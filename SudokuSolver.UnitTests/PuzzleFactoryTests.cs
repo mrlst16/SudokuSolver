@@ -2,7 +2,7 @@ using SudokuSolver.Factories;
 
 namespace SudokuSolver.UnitTests
 {
-    public class PuxzzleFactoryTests
+    public class PuzzleFactoryTests
     {
         [Fact]
         public void CreateBoardNull_ThrowException()
