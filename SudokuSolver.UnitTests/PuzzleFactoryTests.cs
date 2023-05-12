@@ -27,7 +27,7 @@ namespace SudokuSolver.UnitTests
         public void CreateBoardTooLong_ThrowException()
         {
             PuzzleFactory factory = new PuzzleFactory();
-            int[,] board = new int[,] { 
+            int[,] board = new int[,] {
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 },
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }
             };
