@@ -2,11 +2,17 @@
 {
     public class SudokuPuzzle
     {
-        private int[,] _board = new int[9, 9];
+        internal int[,] _board;
 
         public SudokuPuzzle(int[,] board)
         {
             _board = board;
         }
+
+        public static implicit operator SudokuPuzzle(int[,] board)
+            => new SudokuPuzzle(board);
+
+        public static implicit operator int[,](SudokuPuzzle puzzle)
+            => puzzle._board;
     }
 }
