@@ -10,13 +10,22 @@ namespace SudokuSolver.Checkers
             for (int i = 0; i < 9; i++)
             {
                 int[] row = board.GetRow(i);
-                if (!row.IsUnique()) return false;
+                if (
+                    !row.IsUnique()
+                    || row.Any(x => x < 0 || x > 9)
+                    ) return false;
 
                 int[] column = board.GetColumn(i);
-                if (!column.IsUnique()) return false;
+                if (
+                    !column.IsUnique()
+                    || column.Any(x => x < 0 || x > 9)
+                ) return false;
 
                 int[,] square = GetSquare(board, i);
-                if (!square.IsUnique()) return false;
+                if (
+                    !square.IsUnique()
+                    || square.Flatten().Any(x => x < 0 || x > 9)
+                ) return false;
             }
 
             return true;
