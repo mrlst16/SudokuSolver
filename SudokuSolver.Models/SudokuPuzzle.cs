@@ -3,6 +3,7 @@
     public class SudokuPuzzle
     {
         internal int[,] _board;
+        public int[,] Board => _board;
 
         public SudokuPuzzle(int[,] board)
         {
