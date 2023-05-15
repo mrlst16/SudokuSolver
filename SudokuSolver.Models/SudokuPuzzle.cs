@@ -15,5 +15,11 @@
 
         public static implicit operator int[,](SudokuPuzzle puzzle)
             => puzzle._board;
+
+        public int this[int i, int j]
+        {
+            get => _board[i, j];
+            set => _board[i, j] = value;
+        }
     }
 }

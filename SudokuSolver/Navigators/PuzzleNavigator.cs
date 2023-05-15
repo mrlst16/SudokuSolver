@@ -15,53 +15,11 @@ namespace SudokuSolver.Navigators
             _puzzle = puzzle;
         }
 
-        //public int[,] GetSquareOfPosition(int i, int j)
-        //{
-        //    if (i is >= 0 and <= 2)
-        //    {
-        //        switch (j)
-        //        {
-        //            case >= 0 and <= 2:
-        //                return _puzzle.Board.GetSquare(0, 2, 0, 2);
-        //            case >= 3 and <= 5:
-        //                return _puzzle.Board.GetSquare(0, 2, 3, 5);
-        //            case >= 6 and <= 8:
-        //                return _puzzle.Board.GetSquare(0, 2, 6, 8);
-        //        }
-        //    }
-        //    if (i is >= 3 and <= 5)
-        //    {
-        //        switch (j)
-        //        {
-        //            case >= 0 and <= 2:
-        //                return _puzzle.Board.GetSquare(3, 5, 0, 2);
-        //            case >= 3 and <= 5:
-        //                return _puzzle.Board.GetSquare(3, 5, 3, 5);
-        //            case >= 6 and <= 8:
-        //                return _puzzle.Board.GetSquare(3, 5, 6, 8);
-        //        }
-
-        //    }
-        //    if (i is >= 6 and <= 8)
-        //    {
-        //        switch (j)
-        //        {
-        //            case >= 0 and <= 2:
-        //                return _puzzle.Board.GetSquare(6, 8, 0, 2);
-        //            case >= 3 and <= 5:
-        //                return _puzzle.Board.GetSquare(6, 8, 3, 5);
-        //            case >= 6 and <= 8:
-        //                return _puzzle.Board.GetSquare(6, 8, 6, 8);
-        //        }
-        //    }
-
-        //    return j switch
-        //    {
-        //        >= 0 and <= 2 => _puzzle.Board
-        //    };
-
-        //    return null;
-        //}
+        public int this[int i, int j]
+        {
+            get => _puzzle[i, j];
+            set => _puzzle[i, j] = value;
+        }
 
         public int[,] GetSquareOfPosition(int i, int j)
             => i switch
@@ -88,6 +46,21 @@ namespace SudokuSolver.Navigators
                         >= 6 and <= 8 => _puzzle.Board.GetSquare(6, 8, 6, 8)
                     }
             };
+
+        public bool SelectionCanGoInRow(int i, int selection)
+            => !((int[,])_puzzle)
+                .GetRow(i)
+                .Contains(selection);
+
+        public bool SelectionCanGoInColumn(int j, int selection)
+            => !((int[,])_puzzle)
+                .GetColumn(j)
+                .Contains(selection);
+
+        public bool SelectionCanGoInSquare(int i, int j, int selection)
+            => !GetSquareOfPosition(i, j)
+                .Flatten()
+                .Contains(selection);
 
         public static implicit operator PuzzleNavigator(SudokuPuzzle puzzle)
             => new PuzzleNavigator(puzzle);
