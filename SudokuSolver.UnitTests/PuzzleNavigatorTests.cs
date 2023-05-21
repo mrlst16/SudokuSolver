@@ -17,6 +17,19 @@ namespace SudokuSolver.UnitTests
             { 9, 1, 2, 3, 4, 5, 6, 7, 8 }
         };
 
+        private int[,] NineByNineOnlySquare1FilledOut => new int[9, 9]
+        {
+            { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
+            { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
+            { 7, 8, 9, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        };
+
         private static int[,] Square1 => new int[3, 3]
         {
             { 1, 2, 3 },
@@ -93,6 +106,32 @@ namespace SudokuSolver.UnitTests
             int[,] result = navigator.GetSquareOfPosition(i, j);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [MemberData(nameof(SelectionCanGoInRowTheory_ExpectingFalse_TestData))]
+        public void SelectionCanGoInRowTheory_ExpectingFalse(
+            int i,
+            int selection
+        )
+        {
+            PuzzleNavigator navigator = NineByNine;
+            bool result = navigator.SelectionCanGoInRow(i, selection);
+            Assert.False(result);
+        }
+
+        [Theory]
+        [MemberData(nameof(SelectionCanGoInRowTheory_ExpectingTrue_TestData))]
+        public void SelectionCanGoInRowTheory_ExpectingTrue(
+            int i,
+            int selection
+        )
+        {
+            PuzzleNavigator navigator = NineByNineOnlySquare1FilledOut;
+            bool result = navigator.SelectionCanGoInRow(i, selection);
+            Assert.True(result);
+        }
+
+
 
         #endregion
 
@@ -191,6 +230,34 @@ namespace SudokuSolver.UnitTests
                 new object []{ 6, 8, Square9},
                 new object []{ 7, 8, Square9},
                 new object []{ 8, 8, Square9},
+            };
+
+        public static List<object[]> SelectionCanGoInRowTheory_ExpectingFalse_TestData()
+            => new List<object[]>()
+            {
+                new object[]{ 0, 1 },
+                new object[]{ 1, 2 },
+                new object[]{ 2, 3 },
+                new object[]{ 3, 4 },
+                new object[]{ 4, 5 },
+                new object[]{ 5, 6 },
+                new object[]{ 6, 7 },
+                new object[]{ 7, 8 },
+                new object[]{ 8, 9 }
+            };
+
+        public static List<object[]> SelectionCanGoInRowTheory_ExpectingTrue_TestData()
+            => new List<object[]>()
+            {
+                new object[]{ 0, 9 },
+                new object[]{ 1, 2 },
+                new object[]{ 2, 3 },
+                new object[]{ 3, 4 },
+                new object[]{ 4, 5 },
+                new object[]{ 5, 6 },
+                new object[]{ 6, 7 },
+                new object[]{ 7, 8 },
+                new object[]{ 8, 9 }
             };
 
         #endregion
