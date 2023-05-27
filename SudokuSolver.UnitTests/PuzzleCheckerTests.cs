@@ -1,4 +1,5 @@
 ﻿using SudokuSolver.Checkers;
+using SudokuSolver.Models;
 
 namespace SudokuSolver.UnitTests
 {
@@ -10,7 +11,7 @@ namespace SudokuSolver.UnitTests
         [Fact]
         public void PuzzleChecker_UniqueTest()
         {
-            int[,] array = new int[,]
+            Cell[,] array = new Cell[,]
             {
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
                 { 4, 5, 6, 7, 8, 9, 1, 2, 3 },
@@ -31,7 +32,7 @@ namespace SudokuSolver.UnitTests
         [Fact]
         public void PuzzleChecker_NonUniqueTest()
         {
-            int[,] array = new int[,]
+            Cell[,] array = new Cell[,]
             {
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
                 { 4, 5, 6, 7, 8, 9, 1, 2, 3 },
@@ -52,7 +53,7 @@ namespace SudokuSolver.UnitTests
         [Fact]
         public void PuzzleChecker_Unique_NumberOutsideRange_Test()
         {
-            int[,] array = new int[,]
+            Cell[,] array = new Cell[,]
             {
                 { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
                 { 4, 5, 6, 7, 8, 9, 1, 2, 3 },

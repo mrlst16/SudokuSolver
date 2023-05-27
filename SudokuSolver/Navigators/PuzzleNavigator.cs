@@ -1,6 +1,7 @@
 ﻿using Common.Extensions;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
+using System.Linq;
 
 namespace SudokuSolver.Navigators
 {
@@ -21,7 +22,7 @@ namespace SudokuSolver.Navigators
             set => _puzzle[i, j] = value;
         }
 
-        public int[,] GetSquareOfPosition(int i, int j)
+        public Cell[,] GetSquareOfPosition(int i, int j)
             => i switch
             {
                 >= 0 and <= 2
@@ -48,24 +49,25 @@ namespace SudokuSolver.Navigators
             };
 
         public bool SelectionCanGoInRow(int i, int selection)
-            => !((int[,])_puzzle)
-                .GetRow(i)
-                .Contains(selection);
+            => !_puzzle.Board.GetRow(i).Contains(x=> x == selection);
 
         public bool SelectionCanGoInColumn(int j, int selection)
-            => !((int[,])_puzzle)
+            => !_puzzle.Board
                 .GetColumn(j)
-                .Contains(selection);
+                .Contains(x=>  x==selection);
 
         public bool SelectionCanGoInSquare(int i, int j, int selection)
             => !GetSquareOfPosition(i, j)
                 .Flatten()
-                .Contains(selection);
+                .Contains(x=> x == selection);
 
         public static implicit operator PuzzleNavigator(SudokuPuzzle puzzle)
             => new PuzzleNavigator(puzzle);
 
         public static implicit operator PuzzleNavigator(int[,] board)
+            => new PuzzleNavigator(board);
+
+        public static implicit operator PuzzleNavigator(Cell[,] board)
             => new PuzzleNavigator(board);
     }
 }

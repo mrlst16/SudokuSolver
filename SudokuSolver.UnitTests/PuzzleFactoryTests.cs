@@ -47,7 +47,26 @@ namespace SudokuSolver.UnitTests
         [MemberData(nameof(CreateTestData))]
         public void CreateOneTry_Test(
             PuzzleBoilermaker.PuzzleFactoryStrategy strategy
-            )
+        )
+        {
+            PuzzleFactoryOptions options = new PuzzleFactoryOptions()
+            {
+                TotalTries = 1,
+                TriesPerSquare = 10,
+                IsComplete = board => false
+            };
+            IPuzzleFactory factory = PuzzleBoilermaker.Get(strategy, options);
+            SudokuPuzzle result = factory.Create();
+            PuzzleChecker checker = new PuzzleChecker();
+            bool isGood = checker.Check(result);
+            Assert.True(isGood);
+        }
+
+        [Theory]
+        [MemberData(nameof(CreateTestData))]
+        public void CreateOne10TriesMustBeZeros_Test(
+            PuzzleBoilermaker.PuzzleFactoryStrategy strategy
+        )
         {
             PuzzleFactoryOptions options = new PuzzleFactoryOptions()
             {

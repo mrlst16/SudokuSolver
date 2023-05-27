@@ -1,10 +1,11 @@
-﻿using SudokuSolver.Navigators;
+﻿using SudokuSolver.Models;
+using SudokuSolver.Navigators;
 
 namespace SudokuSolver.UnitTests
 {
     public class PuzzleNavigatorTests
     {
-        private int[,] NineByNine => new int[9, 9]
+        private Cell[,] NineByNine => new Cell[9, 9]
         {
             { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
             { 4, 5, 6, 7, 8, 9, 1, 2, 3 },
@@ -17,7 +18,7 @@ namespace SudokuSolver.UnitTests
             { 9, 1, 2, 3, 4, 5, 6, 7, 8 }
         };
 
-        private int[,] NineByNineOnlySquare1FilledOut => new int[9, 9]
+        private Cell[,] NineByNineOnlySquare1FilledOut => new Cell[9, 9]
         {
             { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
             { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
@@ -30,63 +31,63 @@ namespace SudokuSolver.UnitTests
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
 
-        private static int[,] Square1 => new int[3, 3]
+        private static Cell[,] Square1 => new Cell[3, 3]
         {
             { 1, 2, 3 },
             { 4, 5, 6 },
             { 7, 8, 9 }
         };
 
-        private static int[,] Square2 => new int[3, 3]
+        private static Cell[,] Square2 => new Cell[3, 3]
         {
             { 4, 5, 6 },
             { 7, 8, 9 },
             { 1, 2, 3 }
         };
 
-        private static int[,] Square3 => new int[3, 3]
+        private static Cell[,] Square3 => new Cell[3, 3]
         {
             { 7, 8, 9 },
             { 1, 2, 3 },
             { 4, 5, 6 }
         };
 
-        private static int[,] Square4 => new int[3, 3]
+        private static Cell[,] Square4 => new Cell[3, 3]
         {
             { 2, 3, 4 },
             { 5, 6, 7 },
             { 8, 9, 1 }
         };
 
-        private static int[,] Square5 => new int[3, 3]
+        private static Cell[,] Square5 => new Cell[3, 3]
         {
             { 5, 6, 7 },
             { 8, 9, 1 },
             { 2, 3, 4 }
         };
 
-        private static int[,] Square6 => new int[3, 3]
+        private static Cell[,] Square6 => new Cell[3, 3]
         {
             { 8, 9, 1 },
             { 2, 3, 4 },
             { 5, 6, 7 }
         };
 
-        private static int[,] Square7 => new int[3, 3]
+        private static Cell[,] Square7 => new Cell[3, 3]
         {
             { 3, 4, 5 },
             { 6, 7, 8 },
             { 9, 1, 2 }
         };
 
-        private static int[,] Square8 => new int[3, 3]
+        private static Cell[,] Square8 => new Cell[3, 3]
         {
             { 6, 7, 8 },
             { 9, 1, 2 },
             { 3, 4, 5 }
         };
 
-        private static int[,] Square9 => new int[3, 3]
+        private static Cell[,] Square9 => new Cell[3, 3]
         {
             { 9, 1, 2 },
             { 3, 4, 5 },
@@ -99,11 +100,11 @@ namespace SudokuSolver.UnitTests
         public void GetSquareByPositionTheory(
             int i,
             int j,
-            int[,] expected
+            Cell[,] expected
         )
         {
             PuzzleNavigator navigator = NineByNine;
-            int[,] result = navigator.GetSquareOfPosition(i, j);
+            Cell[,] result = navigator.GetSquareOfPosition(i, j);
             Assert.Equal(expected, result);
         }
 

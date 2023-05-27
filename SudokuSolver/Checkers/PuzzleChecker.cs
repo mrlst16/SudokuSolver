@@ -1,37 +1,41 @@
 ﻿using Common.Extensions;
 using SudokuSolver.Interfaces;
+using SudokuSolver.Models;
 
 namespace SudokuSolver.Checkers
 {
     public class PuzzleChecker : IPuzzleChecker
     {
-        public bool Check(int[,] board)
+        public bool Check(Cell[,] board)
         {
             for (int i = 0; i < 9; i++)
             {
-                int[] row = board.GetRow(i);
+                Cell[] row = board.GetRow(i);
                 if (
-                    !row.IsUnique()
-                    || row.Any(x => x < 0 || x > 9)
-                    ) return false;
+                    !row.HasUniqueValues()
+                    || row.Any(x => x <= 0 || x > 9)
+                ) 
+                    return false;
 
-                int[] column = board.GetColumn(i);
+                Cell[] column = board.GetColumn(i);
                 if (
-                    !column.IsUnique()
-                    || column.Any(x => x < 0 || x > 9)
-                ) return false;
+                    !column.HasUniqueValues()
+                    || column.Any(x => x <= 0 || x > 9)
+                ) 
+                    return false;
 
-                int[,] square = GetSquare(board, i);
+                Cell[,] square = GetSquare(board, i);
                 if (
                     !square.IsUnique()
-                    || square.Flatten().Any(x => x < 0 || x > 9)
-                ) return false;
+                    || square.Flatten().Any(x => x <= 0 || x > 9)
+                ) 
+                    return false;
             }
 
             return true;
         }
 
-        private int[,] GetSquare(int[,] board, int i) => i switch
+        private Cell[,] GetSquare(Cell[,] board, int i) => i switch
         {
             0 => board.GetSquare(0, 2, 0, 2),
             1 => board.GetSquare(0, 2, 3, 5),
