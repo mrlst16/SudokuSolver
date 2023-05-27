@@ -5,7 +5,7 @@ namespace SudokuSolver.UnitTests
 {
     public class PuzzleNavigatorTests
     {
-        private Cell[,] NineByNine => new Cell[9, 9]
+        private static Cell[,] NineByNine => new Cell[9, 9]
         {
             { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
             { 4, 5, 6, 7, 8, 9, 1, 2, 3 },
@@ -18,7 +18,20 @@ namespace SudokuSolver.UnitTests
             { 9, 1, 2, 3, 4, 5, 6, 7, 8 }
         };
 
-        private Cell[,] NineByNineOnlySquare1FilledOut => new Cell[9, 9]
+        private static Cell[,] NineByNineOnlySquare1FilledOut => new Cell[9, 9]
+        {
+            { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
+            { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
+            { 7, 8, 9, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        };
+
+        private static int[,] NineByNineOnlySquare1FilledOut_Ints => new int[9, 9]
         {
             { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
             { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
@@ -132,7 +145,18 @@ namespace SudokuSolver.UnitTests
             Assert.True(result);
         }
 
-
+        [Theory]
+        [MemberData(nameof(GetPossibleValuesTheoryTestData))]
+        public void GetPossibleValuesTheory(
+            int[,] board,
+            int i,
+            int j,
+            List<int> expected
+            )
+        {
+            List<int> result = PuzzleNavigator.GetPossibleValues(board, i, j);
+            Assert.Equal(expected, result);
+        }
 
         #endregion
 
@@ -259,6 +283,22 @@ namespace SudokuSolver.UnitTests
                 new object[]{ 6, 7 },
                 new object[]{ 7, 8 },
                 new object[]{ 8, 9 }
+            };
+
+        //{ 1, 2, 3, 0, 0, 0, 0, 0, 0 },
+        //{ 4, 5, 6, 0, 0, 0, 0, 0, 0 },
+        //{ 7, 8, 9, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+        //{ 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        public static List<object[]> GetPossibleValuesTheoryTestData()
+            => new List<object[]>()
+            {
+                new object[]{ NineByNineOnlySquare1FilledOut_Ints, 3, 0, new List<int>(){ 2, 3, 5, 6, 8, 9 }  },
+                new object[]{ NineByNineOnlySquare1FilledOut_Ints, 0, 0, new List<int>()  }
             };
 
         #endregion

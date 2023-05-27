@@ -29,7 +29,7 @@ namespace SudokuSolver.Models
     public class Cell : IValuable<int>
     {
         public int Value { get; set; }
-        public int[] Possiblities { get; set; }
+        public List<int> Possiblities { get; set; }
 
         public static implicit operator int(Cell cell)
             => cell.Value;
