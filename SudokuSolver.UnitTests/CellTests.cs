@@ -8,9 +8,32 @@ namespace SudokuSolver.UnitTests
     {
 
         #region Tests
+
         [Theory]
-        [MemberData(nameof(EqualsTestData))]
-        public void EqualsTest(
+        [MemberData(nameof(EqualsTest_ExpectTrue_TestData))]
+        public void EqualsTest_ExpectTrue(
+            Cell one,
+            Cell two
+        )
+        {
+            bool result = one.Equals(two);
+            Assert.True(result);
+        }
+
+        [Theory]
+        [MemberData(nameof(EqualsTest_ExpectFalse_TestData))]
+        public void EqualsTest_ExpectFalse(
+            Cell one,
+            Cell two
+        )
+        {
+            bool result = one.Equals(two);
+            Assert.False(result);
+        }
+
+        [Theory]
+        [MemberData(nameof(ImplicitConversionEqualsTestData))]
+        public void ImplicitConversionEqualsTest(
             int expected
             )
         {
@@ -22,7 +45,7 @@ namespace SudokuSolver.UnitTests
         [Fact]
         public void HasUniqueValues_NonUniqueData()
         {
-            Cell[] array = new Cell[]{ 1, 2, 3, 1 };
+            Cell[] array = new Cell[] { 1, 2, 3, 1 };
             bool result = array.HasUniqueValues();
             Assert.False(result);
         }
@@ -32,7 +55,7 @@ namespace SudokuSolver.UnitTests
         #region Data
 
         [Fact]
-        public static List<object[]> EqualsTestData()
+        public static List<object[]> ImplicitConversionEqualsTestData()
             => new List<object[]>()
             {
                 new object[]{ 1 },
@@ -44,6 +67,46 @@ namespace SudokuSolver.UnitTests
                 new object[]{ 7 },
                 new object[]{ 8 },
                 new object[]{ 9 },
+            };
+
+        public static List<object[]> EqualsTest_ExpectTrue_TestData()
+            => new List<object[]>()
+            {
+                new object[]
+                {
+                    new Cell(){ Value = 1, Possiblities = new List<int>(){ 1, 2, 3} },
+                    new Cell(){ Value = 1, Possiblities = new List<int>(){ 1, 2, 3 } }
+                },
+                new object[]
+                {
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ } },
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ } }
+                },
+                new object[]
+                {
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ 1, 2, 3, 4, 5 } },
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ 1, 2, 3, 4, 5 } }
+                },
+            };
+
+        public static List<object[]> EqualsTest_ExpectFalse_TestData()
+            => new List<object[]>()
+            {
+                new object[]
+                {
+                    new Cell(){ Value = 1, Possiblities = new List<int>(){ 1} },
+                    new Cell(){ Value = 1, Possiblities = new List<int>(){ } }
+                },
+                new object[]
+                {
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ } },
+                    new Cell(){ Value = 1, Possiblities = new List<int>(){ } }
+                },
+                new object[]
+                {
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ 1, 2, 8, 9 } },
+                    new Cell(){ Value = 0, Possiblities = new List<int>(){ 1, 6, 7 } }
+                },
             };
 
         #endregion

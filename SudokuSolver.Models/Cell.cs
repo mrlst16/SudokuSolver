@@ -13,7 +13,7 @@ namespace SudokuSolver.Models
 
     public static partial class Extensions
     {
-        
+
 
         public static bool IsUnique<TSource, TKey>(
             this IEnumerable<TSource> source,
@@ -29,7 +29,7 @@ namespace SudokuSolver.Models
     public class Cell : IValuable<int>
     {
         public int Value { get; set; }
-        public List<int> Possiblities { get; set; }
+        public List<int> Possiblities { get; set; } = new List<int>();
 
         public static implicit operator int(Cell cell)
             => cell.Value;
@@ -42,7 +42,19 @@ namespace SudokuSolver.Models
             if (obj is int val)
                 return Value == val;
             if (obj is Cell valCell)
-                return Value == valCell.Value;
+            {
+                if (valCell != Value)
+                    return false;
+                var valCellPossibilitiesOrdered = valCell.Possiblities.OrderBy(x=> x);
+                var possibilitiesOrdered = Possiblities.OrderBy(x=> x);
+                if(valCellPossibilitiesOrdered.Count() != possibilitiesOrdered.Count())
+                    return false;
+                for (int i = 0; i < possibilitiesOrdered.Count(); i++)
+                    if (valCellPossibilitiesOrdered.ElementAt(i) != possibilitiesOrdered.ElementAt(i))
+                        return false;
+
+                return true;
+            }
 
             return base.Equals(obj);
         }
