@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Extensions;
+using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 
@@ -14,9 +15,10 @@ namespace SudokuSolver.SolverStrategies
         public bool Cycle(SudokuPuzzle puzzle)
         {
             bool result = false;
-            for (int i = 0; i <= 9; i++)
+            FastPencil.Apply(puzzle);
+            for (int j = 0; j < 9; j++)
             {
-                Cell[] column = puzzle.Board.GetColumn(i);
+                Cell[] column = puzzle.Board.GetColumn(j);
                 var singles = column
                     .SelectMany(x => x.Possiblities)
                     .GroupBy(x => x)
@@ -24,15 +26,17 @@ namespace SudokuSolver.SolverStrategies
                     .Select(x => x.Key);
 
                 if (!singles.Any())
-                    return result;
+                    continue;
                 foreach (int single in singles)
                 {
-                    for (int j = 0; j < 9; j++)
+                    for (int i = 0; i < 9; i++)
                     {
-                        var cell = column[j];
+                        var cell = column[i];
                         if (cell.Possiblities.Contains(single))
                         {
-                            cell = single;
+                            puzzle[i,j] = single;
+                            result = true;
+                            FastPencil.Apply(puzzle);
                             break;
                         }
                     }

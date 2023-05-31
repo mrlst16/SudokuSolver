@@ -4,12 +4,9 @@ using SudokuSolver.Tests.MockData;
 
 namespace SudokuSolver.UnitTests.SolverStrategies
 {
-    public class SinglePossibilityOfNumberInSquareStrategyTests
+    public class SinglePossibilityOfNumberInColumnStrategyTests
     {
-
-        private SinglePossibilityOfNumberInSquareStrategy _strategy => new();
-
-        #region Tests
+        private SinglePossibilityOfNumberInColumnStrategy _strategy => new();
 
         [Fact]
         public void PuzzleI7J2Missing_SomethingFound()
@@ -27,12 +24,5 @@ namespace SudokuSolver.UnitTests.SolverStrategies
             Cell cell = puzzle[7, 2];
             Assert.Equal(8, cell.Value);
         }
-
-        #endregion
-
-        #region TestData
-
-
-        #endregion
     }
 }

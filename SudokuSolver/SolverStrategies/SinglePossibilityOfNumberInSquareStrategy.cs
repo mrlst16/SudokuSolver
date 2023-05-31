@@ -1,4 +1,5 @@
 ﻿using Common.Extensions;
+using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Navigators;
@@ -10,7 +11,7 @@ namespace SudokuSolver.SolverStrategies
     {
         public bool Cycle(SudokuPuzzle puzzle)
         {
-            PuzzleSolver.ApplyFastPencil(puzzle);
+            FastPencil.Apply(puzzle);
             bool result = false;
             for (int i = 0; i < 9; i += 3)
                 for (int j = 0; j < 9; j += 3)
@@ -36,7 +37,7 @@ namespace SudokuSolver.SolverStrategies
                             {
                                 (int txI, int txj) = PuzzleNavigator.PuzzleCoordinatesFromSquareList(i, j, k);
                                 puzzle[txI, txj] = single;
-                                PuzzleSolver.ApplyFastPencil(puzzle);
+                                FastPencil.Apply(puzzle);
                                 result = true;
                                 break;
                             }

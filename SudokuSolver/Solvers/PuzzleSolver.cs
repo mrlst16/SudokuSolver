@@ -67,11 +67,5 @@ namespace SudokuSolver.Solvers
             return puzzle;
         }
 
-        public static void ApplyFastPencil(SudokuPuzzle puzzle)
-        {
-            for (int i = 0; i < 9; i++)
-            for (int j = 0; j < 9; j++)
-                puzzle[i, j].Possiblities = PuzzleNavigator.GetPossibleValues(puzzle.Board, i, j);
-        }
     }
 }

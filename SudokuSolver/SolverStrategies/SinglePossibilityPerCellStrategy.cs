@@ -1,4 +1,5 @@
 ﻿using Common.Extensions;
+using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Solvers;
@@ -9,6 +10,7 @@ namespace SudokuSolver.SolverStrategies
     {
         public bool Cycle(SudokuPuzzle puzzle)
         {
+            FastPencil.Apply(puzzle);
             bool result = false;
             for (int i = 0; i <= 9; i++)
                 for (int j = 0; j <= 9; j++)
@@ -23,7 +25,7 @@ namespace SudokuSolver.SolverStrategies
 
                     puzzle[i, j] = cell.Value;
                     result = true;
-                    PuzzleSolver.ApplyFastPencil(puzzle);
+                    FastPencil.Apply(puzzle);
                 }
             return result;
         }

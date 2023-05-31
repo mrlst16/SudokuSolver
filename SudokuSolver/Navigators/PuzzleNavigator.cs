@@ -127,6 +127,7 @@ namespace SudokuSolver.Navigators
                 6 => (i + 2, j),
                 7 => (i + 2, j + 1),
                 8 => (i + 2, j + 2),
+                _ => throw new ArgumentOutOfRangeException(),
             };
 
         public static implicit operator PuzzleNavigator(SudokuPuzzle puzzle)
