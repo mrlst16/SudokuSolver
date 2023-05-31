@@ -30,20 +30,7 @@ namespace SudokuSolver.UnitTests
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
-
-        private static int[,] NineByNineOnlySquare1FilledOut_Ints => new int[9, 9]
-        {
-            { 1, 2, 3, 0, 0, 0, 0, 0, 0 },
-            { 4, 5, 6, 0, 0, 0, 0, 0, 0 },
-            { 7, 8, 9, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-        };
-
+        
         private static Cell[,] Square1 => new Cell[3, 3]
         {
             { 1, 2, 3 },
@@ -148,7 +135,7 @@ namespace SudokuSolver.UnitTests
         [Theory]
         [MemberData(nameof(GetPossibleValuesTheoryTestData))]
         public void GetPossibleValuesTheory(
-            int[,] board,
+            Cell[,] board,
             int i,
             int j,
             List<int> expected
@@ -297,8 +284,13 @@ namespace SudokuSolver.UnitTests
         public static List<object[]> GetPossibleValuesTheoryTestData()
             => new List<object[]>()
             {
-                new object[]{ NineByNineOnlySquare1FilledOut_Ints, 3, 0, new List<int>(){ 2, 3, 5, 6, 8, 9 }  },
-                new object[]{ NineByNineOnlySquare1FilledOut_Ints, 0, 0, new List<int>()  }
+                new object[]{ NineByNineOnlySquare1FilledOut, 0, 3, new List<int>(){ 4, 5, 6, 7, 8, 9  } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 0, 0, new List<int>() { } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 1, 3, new List<int>(){ 1, 2, 3, 7, 8, 9 } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 2, 3, new List<int>(){ 1, 2, 3, 4, 5, 6 } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 3, 0, new List<int>(){ 2, 3, 5, 6, 8, 9 } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 3, 1, new List<int>(){ 1, 3, 4, 6, 7, 9 } },
+                new object[]{ NineByNineOnlySquare1FilledOut, 3, 2, new List<int>() { 1, 2, 4, 5, 7, 8 } }
             };
 
         #endregion

@@ -1,8 +1,6 @@
 ﻿using Common.Extensions;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
-using System.Linq;
-using System.Runtime.InteropServices.JavaScript;
 
 namespace SudokuSolver.Navigators
 {
@@ -96,9 +94,9 @@ namespace SudokuSolver.Navigators
                 .Flatten()
                 .Contains(x => x == selection);
 
-        public static List<int> GetPossibleValues(int[,] board, int i, int j)
+        public static List<int> GetPossibleValues(Cell[,] board, int i, int j)
         {
-            List<int> inUse = new List<int>();
+            List<Cell> inUse = new List<Cell>();
             List<int> result = new List<int>();
             int cellValue = board[i, j];
             if (cellValue.IsInRange())
@@ -108,10 +106,10 @@ namespace SudokuSolver.Navigators
             inUse.AddRange(board.GetColumn(j));
             inUse.AddRange(PuzzleNavigator.GetSquareOfPosition(board, i, j).Flatten());
 
-            IEnumerable<int> distinctInUse = inUse.Distinct();
+            IEnumerable<int> distinctInUse = inUse.Select(x => x.Value).Distinct();
 
             for (int k = 1; k <= 9; k++)
-                if(!distinctInUse.Contains(k))
+                if (!distinctInUse.Contains(k))
                     result.Add(k);
 
             return result;

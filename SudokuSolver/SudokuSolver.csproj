@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SudokuSolver.Interfaces\SudokuSolver.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>
