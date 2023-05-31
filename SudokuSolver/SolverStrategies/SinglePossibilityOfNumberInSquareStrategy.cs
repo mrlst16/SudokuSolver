@@ -2,6 +2,7 @@
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Navigators;
+using SudokuSolver.Solvers;
 
 namespace SudokuSolver.SolverStrategies
 {
@@ -9,14 +10,15 @@ namespace SudokuSolver.SolverStrategies
     {
         public bool Cycle(SudokuPuzzle puzzle)
         {
+            PuzzleSolver.ApplyFastPencil(puzzle);
             bool result = false;
             for (int i = 0; i < 9; i += 3)
                 for (int j = 0; j < 9; j += 3)
-                { 
+                {
                     Cell[] square = PuzzleNavigator
                         .GetSquareOfPosition(puzzle, i, j)
                         .Flatten();
-                    
+
                     var singles = square
                         .SelectMany(x => x.Possiblities)
                         .GroupBy(x => x)
@@ -24,15 +26,18 @@ namespace SudokuSolver.SolverStrategies
                         .Select(x => x.Key);
 
                     if (!singles.Any())
-                        return result;
+                        continue;
+
                     foreach (int single in singles)
                     {
                         for (int k = 0; k < 9; k++)
                         {
-                            var cell = square[k];
-                            if (cell.Possiblities.Contains(single))
+                            if (square[k].Possiblities.Contains(single))
                             {
-                                cell = single;
+                                (int txI, int txj) = PuzzleNavigator.PuzzleCoordinatesFromSquareList(i, j, k);
+                                puzzle[txI, txj] = single;
+                                PuzzleSolver.ApplyFastPencil(puzzle);
+                                result = true;
                                 break;
                             }
                         }

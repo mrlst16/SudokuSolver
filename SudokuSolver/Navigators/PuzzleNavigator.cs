@@ -115,6 +115,20 @@ namespace SudokuSolver.Navigators
             return result;
         }
 
+        public static (int, int) PuzzleCoordinatesFromSquareList(int i, int j, int k)
+            => k switch
+            {
+                0 => (i, j),
+                1 => (i, j + 1),
+                2 => (i, j + 2),
+                3 => (i + 1, j),
+                4 => (i + 1, j + 1),
+                5 => (i + 1, j + 2),
+                6 => (i + 2, j),
+                7 => (i + 2, j + 1),
+                8 => (i + 2, j + 2),
+            };
+
         public static implicit operator PuzzleNavigator(SudokuPuzzle puzzle)
             => new PuzzleNavigator(puzzle);
 

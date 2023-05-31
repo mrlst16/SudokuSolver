@@ -30,7 +30,7 @@ namespace SudokuSolver.UnitTests
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
         };
-        
+
         private static Cell[,] Square1 => new Cell[3, 3]
         {
             { 1, 2, 3 },
@@ -143,6 +143,20 @@ namespace SudokuSolver.UnitTests
         {
             List<int> result = PuzzleNavigator.GetPossibleValues(board, i, j);
             Assert.Equal(expected, result);
+        }
+
+        [Theory]
+        [MemberData(nameof(PuzzleCoordinatesFromSquareListTheoryTestData))]
+        public void PuzzleCoordinatesFromSquareListTheory(
+            int i,
+            int j,
+            int k,
+            (int x, int y) expected
+            )
+        {
+            (int rx, int ry) = PuzzleNavigator.PuzzleCoordinatesFromSquareList(i, j, k);
+            Assert.Equal(expected.x, rx);
+            Assert.Equal(expected.y, ry);
         }
 
         #endregion
@@ -291,6 +305,20 @@ namespace SudokuSolver.UnitTests
                 new object[]{ NineByNineOnlySquare1FilledOut, 3, 0, new List<int>(){ 2, 3, 5, 6, 8, 9 } },
                 new object[]{ NineByNineOnlySquare1FilledOut, 3, 1, new List<int>(){ 1, 3, 4, 6, 7, 9 } },
                 new object[]{ NineByNineOnlySquare1FilledOut, 3, 2, new List<int>() { 1, 2, 4, 5, 7, 8 } }
+            };
+
+        public static List<object[]> PuzzleCoordinatesFromSquareListTheoryTestData()
+            => new List<object[]>()
+            {
+                new object[] { 6, 0, 0, (6, 0)},
+                new object[] { 6, 0, 1, (6, 1)},
+                new object[] { 6, 0, 2, (6, 2)},
+                new object[] { 6, 0, 3, (7, 0)},
+                new object[] { 6, 0, 4, (7, 1)},
+                new object[] { 6, 0, 5, (7, 2)},
+                new object[] { 6, 0, 6, (8, 0)},
+                new object[] { 6, 0, 7, (8, 1)},
+                new object[] { 6, 0, 8, (8, 2)},
             };
 
         #endregion

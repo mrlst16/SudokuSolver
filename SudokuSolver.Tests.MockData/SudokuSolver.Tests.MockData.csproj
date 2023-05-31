@@ -23,8 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SudokuSolver.Tests.MockData\SudokuSolver.Tests.MockData.csproj" />
-    <ProjectReference Include="..\SudokuSolver\SudokuSolver.csproj" />
+    <ProjectReference Include="..\SudokuSolver.Models\SudokuSolver.Models.csproj" />
   </ItemGroup>
 
 </Project>
