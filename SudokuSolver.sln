@@ -5,11 +5,15 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver", "SudokuSolver\SudokuSolver.csproj", "{A32267A8-5EE0-40E6-A5E3-2930F70E52A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.Models", "SudokuSolver.Models\SudokuSolver.Models.csproj", "{BAD315E5-4677-4964-A39F-3F9ADAC23568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver.Models", "SudokuSolver.Models\SudokuSolver.Models.csproj", "{BAD315E5-4677-4964-A39F-3F9ADAC23568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.Interfaces", "SudokuSolver.Interfaces\SudokuSolver.Interfaces.csproj", "{56DBAD87-6411-4773-BDD5-5C3ED8BEDE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver.Interfaces", "SudokuSolver.Interfaces\SudokuSolver.Interfaces.csproj", "{56DBAD87-6411-4773-BDD5-5C3ED8BEDE00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.UnitTests", "SudokuSolver.UnitTests\SudokuSolver.UnitTests.csproj", "{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver.UnitTests", "SudokuSolver.UnitTests\SudokuSolver.UnitTests.csproj", "{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{91E5F189-66BD-42EA-9300-981ACC607E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuSolver.Tests.MockData", "SudokuSolver.Tests.MockData\SudokuSolver.Tests.MockData.csproj", "{56F5A478-33C1-43D7-B5AD-400E56E657AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,17 @@ Global
 		{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F5A478-33C1-43D7-B5AD-400E56E657AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F5A478-33C1-43D7-B5AD-400E56E657AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F5A478-33C1-43D7-B5AD-400E56E657AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F5A478-33C1-43D7-B5AD-400E56E657AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A22FCB1A-0DDD-4AA6-972F-993AA63A98E7} = {91E5F189-66BD-42EA-9300-981ACC607E9C}
+		{56F5A478-33C1-43D7-B5AD-400E56E657AA} = {91E5F189-66BD-42EA-9300-981ACC607E9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DB89FF8-A400-457B-9F60-CC00F5332127}

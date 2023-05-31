@@ -1,4 +1,5 @@
-﻿using SudokuSolver.Interfaces;
+﻿using Common.Extensions;
+using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Navigators;
 
@@ -34,11 +35,28 @@ namespace SudokuSolver.Factories
                 && (!_options?.IsComplete(board) ?? false)
                 )
             {
+                Clear(ref board);
                 Seed(ref board);
                 iterations++;
             }
 
             return Create(board);
+        }
+
+        protected virtual void Clear(ref int[,] board)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (board.GetRow(i).Contains(0))
+                {
+                    
+                }
+            }
+        }
+
+        protected virtual void SeedRowWithZeros(int[,] board, int row)
+        {
+
         }
 
         protected abstract void Seed(ref int[,] board);

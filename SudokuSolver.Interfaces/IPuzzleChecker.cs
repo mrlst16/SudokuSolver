@@ -1,7 +1,9 @@
-﻿namespace SudokuSolver.Interfaces
+﻿using SudokuSolver.Models;
+
+namespace SudokuSolver.Interfaces
 {
     public interface IPuzzleChecker
     {
-        bool Check(int[,] board);
+        bool Check(Cell[,] board);
     }
 }
