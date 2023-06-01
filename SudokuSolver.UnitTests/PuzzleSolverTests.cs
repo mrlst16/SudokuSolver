@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SudokuSolver.Factories;
+﻿using SudokuSolver.Factories;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Tests.MockData;

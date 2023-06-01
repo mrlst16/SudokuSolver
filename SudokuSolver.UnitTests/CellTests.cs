@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using Common.Extensions;
-using SudokuSolver.Models;
+﻿using SudokuSolver.Models;
 
 namespace SudokuSolver.UnitTests
 {

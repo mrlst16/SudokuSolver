@@ -1,7 +1,5 @@
 ﻿using Common.Extensions;
-using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
-using SudokuSolver.Navigators;
 
 namespace SudokuSolver.Factories
 {

@@ -1,8 +1,6 @@
-﻿using Common.Extensions;
-using SudokuSolver.Helpers;
+﻿using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
-using SudokuSolver.Solvers;
 
 namespace SudokuSolver.SolverStrategies
 {

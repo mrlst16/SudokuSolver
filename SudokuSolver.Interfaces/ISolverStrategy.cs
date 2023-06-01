@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SudokuSolver.Models;
+﻿using SudokuSolver.Models;
 
 namespace SudokuSolver.Interfaces
 {
@@ -14,6 +9,6 @@ namespace SudokuSolver.Interfaces
         /// </summary>
         /// <param name="puzzle"></param>
         /// <returns>Whether or not the strategy made any changes</returns>
-        bool Cycle(SudokuPuzzle  puzzle, bool initiateWithFastPencil = false);
+        bool Cycle(SudokuPuzzle puzzle, bool initiateWithFastPencil = false);
     }
 }

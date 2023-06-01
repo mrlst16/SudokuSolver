@@ -28,4 +28,4 @@ Console.WriteLine($"{generatedInts.Contains(6)}");
 Console.WriteLine($"{generatedInts.Contains(7)}");
 Console.WriteLine($"{generatedInts.Contains(8)}");
 Console.WriteLine($"{generatedInts.Contains(9)}");
-Console.WriteLine($"{!generatedInts.Any(x=> x < 0 || x > 9)}");
+Console.WriteLine($"{!generatedInts.Any(x => x < 0 || x > 9)}");

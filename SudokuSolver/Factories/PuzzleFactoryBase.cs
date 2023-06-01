@@ -49,7 +49,7 @@ namespace SudokuSolver.Factories
             {
                 if (board.GetRow(i).Contains(0))
                 {
-                    
+
                 }
             }
         }

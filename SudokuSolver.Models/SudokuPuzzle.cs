@@ -38,9 +38,9 @@
             if (obj is SudokuPuzzle two)
             {
                 for (int i = 0; i < 9; i++)
-                for (int j = 0; j < 9; j++)
-                    if (Board[i, j].Value != two[i, j].Value)
-                        return false;
+                    for (int j = 0; j < 9; j++)
+                        if (Board[i, j].Value != two[i, j].Value)
+                            return false;
 
                 return true;
             }

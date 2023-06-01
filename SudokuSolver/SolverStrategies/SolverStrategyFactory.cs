@@ -1,7 +1,4 @@
-﻿using SudokuSolver.Models;
-using SudokuSolver.Navigators;
-
-namespace SudokuSolver.SolverStrategies
+﻿namespace SudokuSolver.SolverStrategies
 {
     public class SolverStrategyFactory
     {

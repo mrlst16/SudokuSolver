@@ -14,21 +14,21 @@ namespace SudokuSolver.Checkers
                 if (
                     !row.HasUniqueValues()
                     || row.Any(x => x <= 0 || x > 9)
-                ) 
+                )
                     return false;
 
                 Cell[] column = board.GetColumn(i);
                 if (
                     !column.HasUniqueValues()
                     || column.Any(x => x <= 0 || x > 9)
-                ) 
+                )
                     return false;
 
                 Cell[,] square = GetSquare(board, i);
                 if (
                     !square.IsUnique()
                     || square.Flatten().Any(x => x <= 0 || x > 9)
-                ) 
+                )
                     return false;
             }
 

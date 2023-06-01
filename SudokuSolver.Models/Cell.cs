@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SudokuSolver.Models
+﻿namespace SudokuSolver.Models
 {
     public interface IValuable<T>
     {
@@ -43,9 +37,9 @@ namespace SudokuSolver.Models
             {
                 if (valCell != Value)
                     return false;
-                var valCellPossibilitiesOrdered = valCell.Possiblities.OrderBy(x=> x);
-                var possibilitiesOrdered = Possiblities.OrderBy(x=> x);
-                if(valCellPossibilitiesOrdered.Count() != possibilitiesOrdered.Count())
+                var valCellPossibilitiesOrdered = valCell.Possiblities.OrderBy(x => x);
+                var possibilitiesOrdered = Possiblities.OrderBy(x => x);
+                if (valCellPossibilitiesOrdered.Count() != possibilitiesOrdered.Count())
                     return false;
                 for (int i = 0; i < possibilitiesOrdered.Count(); i++)
                     if (valCellPossibilitiesOrdered.ElementAt(i) != possibilitiesOrdered.ElementAt(i))

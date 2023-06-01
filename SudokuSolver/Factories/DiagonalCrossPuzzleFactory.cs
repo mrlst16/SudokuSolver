@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SudokuSolver.Interfaces;
-using SudokuSolver.Models;
+﻿using SudokuSolver.Models;
 
 namespace SudokuSolver.Factories
 {
@@ -16,9 +10,9 @@ namespace SudokuSolver.Factories
 
         protected override void Seed(ref int[,] board)
         {
-           SeedDiagonalsFromTopLeftToBottomRight(ref board);
-           SeedDiagonalsFromTopRightToBottomLeft(ref board);
-           SeedByRow(ref board);
+            SeedDiagonalsFromTopLeftToBottomRight(ref board);
+            SeedDiagonalsFromTopRightToBottomLeft(ref board);
+            SeedByRow(ref board);
         }
     }
 }
