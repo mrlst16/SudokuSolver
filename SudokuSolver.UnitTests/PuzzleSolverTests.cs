@@ -57,5 +57,15 @@ namespace SudokuSolver.UnitTests
             solver.Solve(puzzle);
             Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
         }
+
+        [Fact]
+        public void SolveEasyLevelPuzzle()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.EasyLevelPuzzle1;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.EasyLevelPuzzle1Solution);
+        }
     }
 }
