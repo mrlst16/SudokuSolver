@@ -57,3 +57,4 @@ packages/*
 .volumes
 volumes
 *.pem
+*.user
