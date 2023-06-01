@@ -7,6 +7,21 @@ namespace SudokuSolver.UnitTests
 {
     public class PuzzleSolverTests
     {
+        #region Tests
+
+
+
+        [Theory]
+        [MemberData(nameof(SolveData))]
+        public static void Solve(
+            SudokuPuzzle puzzle,
+            SudokuPuzzle solution
+        )
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, solution);
+        }
 
         [Fact]
         public void SolveOneMissing()
@@ -67,5 +82,31 @@ namespace SudokuSolver.UnitTests
             solver.Solve(puzzle);
             Assert.Equal(puzzle, MockPuzzleFactory.EasyLevelPuzzle1Solution);
         }
+
+        [Fact]
+        public void SolveMediumLevelPuzzle()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.HardLevelPuzzle1;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.HardLevelPuzzle1Solved);
+        }
+        #endregion
+
+        #region Test Data
+
+        public static List<object[]> SolveData()
+            => new List<object[]>()
+            {
+                new object[]{ MockPuzzleFactory.PuzzleI7J2Missing, MockPuzzleFactory.SolvedPuzzle },
+                new object[]{ MockPuzzleFactory.PuzzleRow0Missing, MockPuzzleFactory.SolvedPuzzle },
+                new object[]{ MockPuzzleFactory.PuzzleColumn0Missing, MockPuzzleFactory.SolvedPuzzle },
+                new object[]{ MockPuzzleFactory.PuzzleSquare0Missing, MockPuzzleFactory.SolvedPuzzle },
+                new object[]{ MockPuzzleFactory.EasyLevelPuzzle1, MockPuzzleFactory.EasyLevelPuzzle1Solution },
+                new object[]{ MockPuzzleFactory.HardLevelPuzzle1, MockPuzzleFactory.HardLevelPuzzle1Solved }
+            };
+
+        #endregion
     }
 }

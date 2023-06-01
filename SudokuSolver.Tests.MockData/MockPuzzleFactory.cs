@@ -4,6 +4,19 @@ namespace SudokuSolver.Tests.MockData
 {
     public class MockPuzzleFactory
     {
+        public static SudokuPuzzle EmptyPuzzle => new Cell[9, 9]
+        {
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        };
+
         public static SudokuPuzzle SolvedPuzzle => new Cell[9, 9]
         {
             { 1, 2, 3, 4, 5, 6, 7, 8, 9 },
@@ -82,6 +95,7 @@ namespace SudokuSolver.Tests.MockData
             { 0, 1, 2, 3, 0, 5, 0, 7, 8 }
         };
 
+        //From readers digest
         public static SudokuPuzzle EasyLevelPuzzle1 => new Cell[9, 9]
         {
             { 8, 0, 6, 0, 1, 0, 0, 0, 0 },
@@ -95,6 +109,7 @@ namespace SudokuSolver.Tests.MockData
             { 0, 0, 0, 0, 2, 0, 1, 0, 5 }
         };
 
+        //From readers digest
         public static SudokuPuzzle EasyLevelPuzzle1Solution => new Cell[9, 9]
         {
             { 8, 5, 6, 9, 1, 7, 4, 2, 3 },
@@ -106,6 +121,34 @@ namespace SudokuSolver.Tests.MockData
             { 5, 2, 1, 6, 8, 3, 9, 7, 4 },
             { 4, 3, 9, 7, 5, 1, 2, 6, 8 },
             { 6, 7, 8, 4, 2, 9, 1, 3, 5 }
+        };
+        
+        //From readers digest
+        public static SudokuPuzzle HardLevelPuzzle1 => new Cell[9, 9]
+        {
+            { 0, 0, 6, 5, 0, 0, 0, 0, 8 },
+            { 0, 9, 5, 0, 0, 0, 0, 2, 0 },
+            { 7, 0, 0, 9, 0, 0, 3, 0, 0 },
+            { 0, 0, 0, 0, 4, 0, 2, 7, 0 },
+            { 0, 0, 0, 8, 7, 3, 0, 0, 0 },
+            { 0, 7, 9, 0, 5, 0, 0, 0, 0 },
+            { 0, 0, 2, 0, 0, 8, 0, 0, 9 },
+            { 0, 5, 0, 0, 0, 0, 8, 1, 0 },
+            { 3, 0, 0, 0, 0, 5, 4, 0, 0 }
+        };
+
+        //From readers digest
+        public static SudokuPuzzle HardLevelPuzzle1Solved => new Cell[9, 9]
+        {
+            { 1, 1, 6, 5, 2, 4, 7, 9, 8 },
+            { 8, 9, 5, 3, 6, 7, 1, 2, 4 },
+            { 7, 2, 4, 9, 8, 1, 3, 5, 6 },
+            { 5, 8, 3, 6, 4, 9, 2, 7, 1 },
+            { 2, 6, 1, 8, 7, 3, 9, 4, 5 },
+            { 4, 7, 9, 1, 5, 2, 6, 8, 3 },
+            { 6, 4, 2, 7, 1, 8, 5, 3, 9 },
+            { 9, 5, 7, 4, 3, 6, 8, 1, 2 },
+            { 3, 1, 8, 2, 9, 5, 4, 6, 7 }
         };
     }
 }
