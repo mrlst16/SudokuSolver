@@ -1,9 +1,10 @@
 ﻿using SudokuSolver.Models;
+using SudokuSolver.Models.Analytics;
 
 namespace SudokuSolver.Interfaces
 {
     public interface IPuzzleSolver
     {
-        SudokuPuzzle Solve(SudokuPuzzle puzzle);
+        SudokuAnalytics Solve(SudokuPuzzle puzzle);
     }
 }

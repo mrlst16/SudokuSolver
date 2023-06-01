@@ -1,6 +1,8 @@
 ﻿using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
+using SudokuSolver.Models.Analytics;
+using SudokuSolver.Printers;
 using SudokuSolver.SolverStrategies;
 
 namespace SudokuSolver.Solvers
@@ -9,7 +11,7 @@ namespace SudokuSolver.Solvers
     {
         private readonly IPuzzleChecker _checker;
         private readonly PuzzleSolverOptions _options;
-
+        private readonly IPuzzlePrinter _printer;
         private readonly ISolverStrategy _singlePossibilityPerCellStrategy;
         private readonly ISolverStrategy _singlePossibilityOfNumberInRowStrategy;
         private readonly ISolverStrategy _singlePossibilityOfNumberInColumnStrategy;
@@ -21,46 +23,34 @@ namespace SudokuSolver.Solvers
             ISolverStrategy singlePossibilityOfNumberInRowStrategy,
             ISolverStrategy singlePossibilityOfNumberInColumnStrategy,
             ISolverStrategy singlePossibilityOfNumberInSquareStrategy,
+            IPuzzlePrinter printer,
             PuzzleSolverOptions options
         )
         {
             _checker = checker;
             _options = options;
-
+            _printer = printer;
             _singlePossibilityPerCellStrategy = singlePossibilityPerCellStrategy;
             _singlePossibilityOfNumberInRowStrategy = singlePossibilityOfNumberInRowStrategy;
             _singlePossibilityOfNumberInColumnStrategy = singlePossibilityOfNumberInColumnStrategy;
             _singlePossibilityOfNumberInSquareStrategy = singlePossibilityOfNumberInSquareStrategy;
         }
 
-        public PuzzleSolver(
-            IPuzzleChecker checker,
-            PuzzleSolverOptions options
-        ) : this(
-            checker,
-            SolverStrategyFactory.SinglePossibilityPerCellStrategy,
-            SolverStrategyFactory.SinglePossibilityPerCellStrategy,
-            SolverStrategyFactory.SinglePossibilityPerCellStrategy,
-            SolverStrategyFactory.SinglePossibilityPerCellStrategy,
-            options
-            )
-        {
-        }
-
-        public SudokuPuzzle Solve(SudokuPuzzle puzzle)
+        public SudokuAnalytics Solve(SudokuPuzzle puzzle)
         {
             int passes = 0;
             bool keepGoing = true;
             FastPencil.Apply(puzzle);
+            SudokuAnalytics result = new();
 
             do
             {
                 bool underPasses = passes < _options.MaxPasses;
                 bool check = _checker.Check(puzzle);
-                bool perCell = _singlePossibilityPerCellStrategy.Cycle(puzzle);
-                bool perRow = _singlePossibilityOfNumberInRowStrategy.Cycle(puzzle);
-                bool perColumn = _singlePossibilityOfNumberInColumnStrategy.Cycle(puzzle);
-                bool perSquare = _singlePossibilityOfNumberInSquareStrategy.Cycle(puzzle);
+                bool perCell = _singlePossibilityPerCellStrategy.Cycle(puzzle, ref result, true);
+                bool perRow = _singlePossibilityOfNumberInRowStrategy.Cycle(puzzle, ref result, true);
+                bool perColumn = _singlePossibilityOfNumberInColumnStrategy.Cycle(puzzle, ref result, true);
+                bool perSquare = _singlePossibilityOfNumberInSquareStrategy.Cycle(puzzle, ref result, true);
                 passes++;
 
                 keepGoing = !underPasses
@@ -72,7 +62,13 @@ namespace SudokuSolver.Solvers
                                     || perSquare
                                 );
             } while (keepGoing);
-            return puzzle;
+
+            result.TotalPasses = passes;
+            result.StringRepresentation = _printer.Print(puzzle);
+            result.Result = puzzle;
+            return result;
         }
+
+
     }
 }

@@ -138,7 +138,7 @@ namespace SudokuSolver.Tests.MockData
         };
 
         //From readers digest
-        public static SudokuPuzzle HardLevelPuzzle1Solved => new Cell[9, 9]
+        public static SudokuPuzzle HardLevelPuzzle1Solution => new Cell[9, 9]
         {
             { 1, 1, 6, 5, 2, 4, 7, 9, 8 },
             { 8, 9, 5, 3, 6, 7, 1, 2, 4 },
@@ -149,6 +149,32 @@ namespace SudokuSolver.Tests.MockData
             { 6, 4, 2, 7, 1, 8, 5, 3, 9 },
             { 9, 5, 7, 4, 3, 6, 8, 1, 2 },
             { 3, 1, 8, 2, 9, 5, 4, 6, 7 }
+        };
+
+        public static SudokuPuzzle MediumLevelPuzzle1 => new Cell[9, 9]
+        {
+            { 5, 0, 7, 2, 0, 0, 0, 9, 0 },
+            { 0, 0, 6, 0, 3, 0, 7, 0, 1 },
+            { 4, 0, 0, 0, 0, 0, 0, 6, 0 },
+            { 1, 0, 0, 4, 9, 0, 0, 0, 7 },
+            { 0, 0, 0, 5, 0, 8, 0, 0, 0 },
+            { 8, 0, 0, 0, 2, 7, 0, 0, 5 },
+            { 0, 7, 0, 0, 0, 0, 0, 0, 9 },
+            { 2, 0, 9, 0, 8, 0, 6, 0, 0 },
+            { 0, 4, 0, 0, 0, 9, 3, 0, 8 }
+        };
+
+        public static SudokuPuzzle MediumLevelPuzzle1Solution => new Cell[9, 9]
+        {
+            { 5, 1, 7, 2, 6, 4, 8, 9, 3 },
+            { 9, 2, 6, 8, 3, 5, 7, 4, 1 },
+            { 4, 8, 3, 9, 7, 1, 5, 6, 2 },
+            { 1, 3, 5, 4, 9, 6, 2, 8, 7 },
+            { 7, 9, 2, 5, 1, 8, 4, 3, 6 },
+            { 8, 6, 4, 3, 2, 7, 9, 1, 5 },
+            { 3, 7, 8, 6, 4, 2, 1, 5, 9 },
+            { 2, 5, 9, 1, 8, 3, 6, 7, 4 },
+            { 6, 4, 1, 7, 5, 9, 3, 2, 8 }
         };
     }
 }
