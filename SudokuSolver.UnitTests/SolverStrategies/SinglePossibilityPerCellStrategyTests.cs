@@ -1,15 +1,17 @@
 ﻿using SudokuSolver.Models;
 using SudokuSolver.SolverStrategies;
 using SudokuSolver.Tests.MockData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SudokuSolver.UnitTests.SolverStrategies
 {
-    public class SinglePossibilityOfNumberInSquareStrategyTests
+    public class SinglePossibilityPerCellStrategyTests
     {
-
-        private SinglePossibilityOfNumberInSquareStrategy _strategy => new();
-
-        #region Tests
+        private SinglePossibilityPerCellStrategy _strategy => new();
 
         [Fact]
         public void PuzzleI7J2Missing_SomethingFound()
@@ -27,12 +29,5 @@ namespace SudokuSolver.UnitTests.SolverStrategies
             Cell cell = puzzle[7, 2];
             Assert.Equal(8, cell.Value);
         }
-
-        #endregion
-
-        #region TestData
-
-
-        #endregion
     }
 }

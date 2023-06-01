@@ -12,10 +12,12 @@ namespace SudokuSolver.SolverStrategies
 {
     public class SinglePossibilityOfNumberInColumnStrategy : ISolverStrategy
     {
-        public bool Cycle(SudokuPuzzle puzzle)
+        public bool Cycle(SudokuPuzzle puzzle, bool initiateWithFastPencil = false)
         {
+            if (initiateWithFastPencil)
+                FastPencil.Apply(puzzle);
+
             bool result = false;
-            FastPencil.Apply(puzzle);
             for (int j = 0; j < 9; j++)
             {
                 Cell[] column = puzzle.Board.GetColumn(j);
@@ -34,7 +36,7 @@ namespace SudokuSolver.SolverStrategies
                         var cell = column[i];
                         if (cell.Possiblities.Contains(single))
                         {
-                            puzzle[i,j] = single;
+                            puzzle[i, j] = single;
                             result = true;
                             FastPencil.Apply(puzzle);
                             break;

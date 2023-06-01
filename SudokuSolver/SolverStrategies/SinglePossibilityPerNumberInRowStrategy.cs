@@ -7,9 +7,11 @@ namespace SudokuSolver.SolverStrategies
 {
     public class SinglePossibilityPerNumberInRowStrategy : ISolverStrategy
     {
-        public bool Cycle(SudokuPuzzle puzzle)
+        public bool Cycle(SudokuPuzzle puzzle, bool initiateWithFastPencil = false)
         {
-            FastPencil.Apply(puzzle);
+            if (initiateWithFastPencil)
+                FastPencil.Apply(puzzle);
+
             bool result = false;
             for (int i = 0; i < 9; i++)
             {
@@ -29,7 +31,7 @@ namespace SudokuSolver.SolverStrategies
                         var cell = row[j];
                         if (cell.Possiblities.Contains(single))
                         {
-                            puzzle[i,j] = single;
+                            puzzle[i, j] = single;
                             result = true;
                             FastPencil.Apply(puzzle);
                             break;

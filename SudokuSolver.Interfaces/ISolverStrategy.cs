@@ -14,6 +14,6 @@ namespace SudokuSolver.Interfaces
         /// </summary>
         /// <param name="puzzle"></param>
         /// <returns>Whether or not the strategy made any changes</returns>
-        bool Cycle(SudokuPuzzle  puzzle);
+        bool Cycle(SudokuPuzzle  puzzle, bool initiateWithFastPencil = false);
     }
 }

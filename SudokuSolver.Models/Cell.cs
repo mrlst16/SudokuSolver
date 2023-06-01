@@ -13,8 +13,6 @@ namespace SudokuSolver.Models
 
     public static partial class Extensions
     {
-
-
         public static bool IsUnique<TSource, TKey>(
             this IEnumerable<TSource> source,
             Func<TSource, TKey> keySelector

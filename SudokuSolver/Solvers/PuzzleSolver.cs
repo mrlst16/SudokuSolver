@@ -1,4 +1,5 @@
 ﻿using Common.Extensions;
+using SudokuSolver.Helpers;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Navigators;
@@ -51,21 +52,29 @@ namespace SudokuSolver.Solvers
         public SudokuPuzzle Solve(SudokuPuzzle puzzle)
         {
             int passes = 0;
-            while (
-                passes < _options.MaxPasses
-                && !_checker.Check(puzzle)
-                && (
-                    _singlePossibilityPerCellStrategy.Cycle(puzzle)
-                    || _singlePossibilityOfNumberInRowStrategy.Cycle(puzzle)
-                    || _singlePossibilityOfNumberInColumnStrategy.Cycle(puzzle)
-                    || _singlePossibilityOfNumberInSquareStrategy.Cycle(puzzle)
-                    )
-                )
+            bool keepGoing = true;
+            FastPencil.Apply(puzzle);
+
+            do
             {
+                bool underPasses = passes < _options.MaxPasses;
+                bool check = _checker.Check(puzzle);
+                bool perCell = _singlePossibilityPerCellStrategy.Cycle(puzzle);
+                bool perRow = _singlePossibilityOfNumberInRowStrategy.Cycle(puzzle);
+                bool perColumn = _singlePossibilityOfNumberInColumnStrategy.Cycle(puzzle);
+                bool perSquare = _singlePossibilityOfNumberInSquareStrategy.Cycle(puzzle);
                 passes++;
-            }
+
+                keepGoing = !underPasses
+                                && !check
+                                || (
+                                    perCell
+                                    || perRow
+                                    || perColumn
+                                    || perSquare
+                                );
+            } while (keepGoing);
             return puzzle;
         }
-
     }
 }

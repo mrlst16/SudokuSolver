@@ -8,12 +8,14 @@ namespace SudokuSolver.SolverStrategies
 {
     public class SinglePossibilityPerCellStrategy : ISolverStrategy
     {
-        public bool Cycle(SudokuPuzzle puzzle)
+        public bool Cycle(SudokuPuzzle puzzle, bool initiateWithFastPencil = false)
         {
-            FastPencil.Apply(puzzle);
+            if (initiateWithFastPencil)
+                FastPencil.Apply(puzzle);
+
             bool result = false;
-            for (int i = 0; i <= 9; i++)
-                for (int j = 0; j <= 9; j++)
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
                 {
                     Cell cell = puzzle[i, j];
 
@@ -23,7 +25,7 @@ namespace SudokuSolver.SolverStrategies
                     )
                         continue;
 
-                    puzzle[i, j] = cell.Value;
+                    puzzle[i, j] = cell.Possiblities.First();
                     result = true;
                     FastPencil.Apply(puzzle);
                 }
