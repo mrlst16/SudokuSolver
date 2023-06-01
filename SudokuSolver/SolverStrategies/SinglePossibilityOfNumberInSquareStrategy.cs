@@ -9,9 +9,11 @@ namespace SudokuSolver.SolverStrategies
 {
     public class SinglePossibilityOfNumberInSquareStrategy : ISolverStrategy
     {
-        public bool Cycle(SudokuPuzzle puzzle)
+        public bool Cycle(SudokuPuzzle puzzle, bool initiateWithFastPencil = false)
         {
-            FastPencil.Apply(puzzle);
+            if (initiateWithFastPencil)
+                FastPencil.Apply(puzzle);
+
             bool result = false;
             for (int i = 0; i < 9; i += 3)
                 for (int j = 0; j < 9; j += 3)
