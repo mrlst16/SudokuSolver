@@ -1,12 +1,11 @@
 ﻿using SudokuSolver.Checkers;
 using SudokuSolver.Models;
 
-namespace SudokuSolver.UnitTests
+namespace SudokuSolver.UnitTests.Checkers
 {
     public class PuzzleCheckerTests
     {
-
-        PuzzleChecker _checker = new PuzzleChecker();
+        private PuzzleChecker _checker = new PuzzleChecker();
 
         [Fact]
         public void PuzzleChecker_UniqueTest()
