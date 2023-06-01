@@ -17,5 +17,45 @@ namespace SudokuSolver.UnitTests
             solver.Solve(puzzle);
             Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
         }
+
+        [Fact]
+        public void SolveFirstRowMissing()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.PuzzleRow0Missing;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
+        }
+
+        [Fact]
+        public void SolveFirstColumnMissing()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.PuzzleColumn0Missing;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
+        }
+
+        [Fact]
+        public void SolveFirstSquareMissing()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.PuzzleSquare0Missing;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
+        }
+
+        [Fact]
+        public void SolveSporadicMissing()
+        {
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            SudokuPuzzle puzzle = MockPuzzleFactory.SporadicMissingPuzzle;
+
+            solver.Solve(puzzle);
+            Assert.Equal(puzzle, MockPuzzleFactory.SolvedPuzzle);
+        }
     }
 }
