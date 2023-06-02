@@ -2,7 +2,6 @@
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Models.Analytics;
-using System;
 
 namespace SudokuSolver.SolverStrategies
 {
@@ -32,7 +31,7 @@ namespace SudokuSolver.SolverStrategies
                         I = i,
                         J = j,
                         Order = analytics.Moves.Count(),
-                        Value = puzzle[i,j].Value,
+                        Value = puzzle[i, j].Value,
                         Type = SolverStrategyType.SinglePossibilityPerCell
                     });
                     FastPencil.Apply(puzzle);

@@ -18,7 +18,7 @@ namespace SudokuSolver.SolverStrategies
             {
                 Cell[] row = puzzle.Board.GetRow(i);
                 var singles = row
-                    .Where(x=> !x.Value.IsInRange())
+                    .Where(x => !x.Value.IsInRange())
                     .SelectMany(x => x.Possiblities)
                     .GroupBy(x => x)
                     .Where(x => x.Count() == 1)

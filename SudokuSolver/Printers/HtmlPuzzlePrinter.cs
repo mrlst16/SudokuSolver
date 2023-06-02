@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SudokuSolver.Interfaces;
+﻿using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
+using System.Text;
 
 namespace SudokuSolver.Printers
 {
@@ -20,7 +16,7 @@ namespace SudokuSolver.Printers
                 for (int j = 0; j < 9; j++)
                 {
                     builder.AppendLine("<td style=\"border: 1px solid black\"; border-collapse: collapse;>");
-                    
+
                     Cell cell = puzzle[i, j];
                     if (cell.Value.IsInRange())
                     {

@@ -2,8 +2,6 @@
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 using SudokuSolver.Models.Analytics;
-using SudokuSolver.Printers;
-using SudokuSolver.SolverStrategies;
 
 namespace SudokuSolver.Solvers
 {
