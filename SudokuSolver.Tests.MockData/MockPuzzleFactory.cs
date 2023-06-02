@@ -122,7 +122,7 @@ namespace SudokuSolver.Tests.MockData
             { 4, 3, 9, 7, 5, 1, 2, 6, 8 },
             { 6, 7, 8, 4, 2, 9, 1, 3, 5 }
         };
-        
+
         //From readers digest
         public static SudokuPuzzle HardLevelPuzzle1 => new Cell[9, 9]
         {
@@ -175,6 +175,19 @@ namespace SudokuSolver.Tests.MockData
             { 3, 7, 8, 6, 4, 2, 1, 5, 9 },
             { 2, 5, 9, 1, 8, 3, 6, 7, 4 },
             { 6, 4, 1, 7, 5, 9, 3, 2, 8 }
+        };
+
+        public static SudokuPuzzle EasyLevelPuzzle1After11Moves => new Cell[9, 9]
+        {
+            { 5, 0, 7, 2, 0, 0, 0, 9, 3 },
+            { 9, 2, 6, 8, 3, 0, 7, 0, 1 },
+            { 4, 0, 0, 0, 0, 0, 0, 6, 2 },
+            { 1, 0, 0, 4, 9, 0, 0, 0, 7 },
+            { 7, 0, 0, 5, 1, 8, 0, 0, 6 },
+            { 8, 0, 0, 0, 2, 7, 0, 0, 5 },
+            { 3, 7, 0, 0, 0, 0, 0, 0, 9 },
+            { 2, 0, 9, 0, 8, 0, 6, 0, 4 },
+            { 6, 4, 0, 0, 0, 9, 3, 0, 8 }
         };
     }
 }

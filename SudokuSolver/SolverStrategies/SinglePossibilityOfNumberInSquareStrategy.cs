@@ -23,6 +23,7 @@ namespace SudokuSolver.SolverStrategies
                         .Flatten();
 
                     var singles = square
+                        .Where(x => !x.Value.IsInRange())
                         .SelectMany(x => x.Possiblities)
                         .GroupBy(x => x)
                         .Where(x => x.Count() == 1)

@@ -26,7 +26,7 @@ namespace SudokuSolver.UnitTests
         [Fact]
         public void SolveMediumLevelPuzzle()
         {
-            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
+            IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategiesHtmlPrinter;
             SudokuPuzzle puzzle = MockPuzzleFactory.MediumLevelPuzzle1;
 
             SudokuAnalytics result = solver.Solve(puzzle);

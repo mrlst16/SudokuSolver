@@ -27,5 +27,16 @@ namespace SudokuSolver.UnitTests.SolverStrategies
             Cell cell = puzzle[7, 2];
             Assert.Equal(8, cell.Value);
         }
+
+
+        [Fact]
+        public void Test()
+        {
+            SudokuAnalytics analytics = new();
+            SudokuPuzzle puzzle = MockPuzzleFactory.EasyLevelPuzzle1After11Moves;
+            bool result = _strategy.Cycle(puzzle, ref analytics, true);
+            Cell cell = puzzle[8, 7];
+            Assert.Equal(2, cell.Value);
+        }
     }
 }

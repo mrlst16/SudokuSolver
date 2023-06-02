@@ -40,11 +40,11 @@ namespace SudokuSolver.Solvers
         {
             int passes = 0;
             bool keepGoing = true;
-            FastPencil.Apply(puzzle);
             SudokuAnalytics result = new();
 
             do
             {
+                FastPencil.Apply(puzzle);
                 bool underPasses = passes < _options.MaxPasses;
                 bool check = _checker.Check(puzzle);
                 bool perCell = _singlePossibilityPerCellStrategy.Cycle(puzzle, ref result, true);

@@ -1,4 +1,6 @@
-﻿namespace SudokuSolver.SolverStrategies
+﻿using SudokuSolver.SolverStrategies;
+
+namespace SudokuSolver.Factories
 {
     public class SolverStrategyFactory
     {
