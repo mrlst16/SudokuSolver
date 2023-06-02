@@ -151,6 +151,7 @@ namespace SudokuSolver.Tests.MockData
             { 3, 1, 8, 2, 9, 5, 4, 6, 7 }
         };
 
+        //From readers digest
         public static SudokuPuzzle MediumLevelPuzzle1 => new Cell[9, 9]
         {
             { 5, 0, 7, 2, 0, 0, 0, 9, 0 },
@@ -164,6 +165,7 @@ namespace SudokuSolver.Tests.MockData
             { 0, 4, 0, 0, 0, 9, 3, 0, 8 }
         };
 
+        //From readers digest
         public static SudokuPuzzle MediumLevelPuzzle1Solution => new Cell[9, 9]
         {
             { 5, 1, 7, 2, 6, 4, 8, 9, 3 },
