@@ -26,24 +26,24 @@ namespace SudokuSolver.UnitTests
         public void SolveMediumLevelPuzzle()
         {
             IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategiesHtmlPrinter;
-            SudokuPuzzle puzzle = MockPuzzleFactory.MediumLevelPuzzle1;
+            SudokuPuzzle puzzle = MockPuzzle.MediumLevelPuzzle1;
 
             SudokuAnalytics result = solver.Solve(puzzle);
 
-            Assert.Equal(puzzle, MockPuzzleFactory.MediumLevelPuzzle1Solution);
+            Assert.Equal(puzzle, MockPuzzle.MediumLevelPuzzle1Solution);
         }
 
         [Fact]
         public void SolveHardLevelPuzzle()
         {
             IPuzzleSolver solver = PuzzleSolverFactory.CreateAllCellsInRangeStandardStrategies;
-            SudokuPuzzle puzzle = MockPuzzleFactory.HardLevelPuzzle1;
+            SudokuPuzzle puzzle = MockPuzzle.HardLevelPuzzle1;
 
             solver.Solve(puzzle);
 
             SudokuAnalytics result = solver.Solve(puzzle);
 
-            Assert.Equal(puzzle, MockPuzzleFactory.HardLevelPuzzle1Solution);
+            Assert.Equal(puzzle, MockPuzzle.HardLevelPuzzle1Solution);
         }
 
         #endregion
@@ -53,13 +53,13 @@ namespace SudokuSolver.UnitTests
         public static List<object[]> SolveData()
             => new List<object[]>()
             {
-                new object[]{ MockPuzzleFactory.PuzzleI7J2Missing, MockPuzzleFactory.SolvedPuzzle },
-                new object[]{ MockPuzzleFactory.PuzzleRow0Missing, MockPuzzleFactory.SolvedPuzzle },
-                new object[]{ MockPuzzleFactory.PuzzleColumn0Missing, MockPuzzleFactory.SolvedPuzzle },
-                new object[]{ MockPuzzleFactory.PuzzleSquare0Missing, MockPuzzleFactory.SolvedPuzzle },
-                new object[]{ MockPuzzleFactory.EasyLevelPuzzle1, MockPuzzleFactory.EasyLevelPuzzle1Solution },
-                new object[]{ MockPuzzleFactory.HardLevelPuzzle1, MockPuzzleFactory.HardLevelPuzzle1Solution },
-                new object[]{ MockPuzzleFactory.MediumLevelPuzzle1, MockPuzzleFactory.MediumLevelPuzzle1Solution }
+                new object[]{ MockPuzzle.PuzzleI7J2Missing, MockPuzzle.SolvedPuzzle },
+                new object[]{ MockPuzzle.PuzzleRow0Missing, MockPuzzle.SolvedPuzzle },
+                new object[]{ MockPuzzle.PuzzleColumn0Missing, MockPuzzle.SolvedPuzzle },
+                new object[]{ MockPuzzle.PuzzleSquare0Missing, MockPuzzle.SolvedPuzzle },
+                new object[]{ MockPuzzle.EasyLevelPuzzle1, MockPuzzle.EasyLevelPuzzle1Solution },
+                new object[]{ MockPuzzle.HardLevelPuzzle1, MockPuzzle.HardLevelPuzzle1Solution },
+                new object[]{ MockPuzzle.MediumLevelPuzzle1, MockPuzzle.MediumLevelPuzzle1Solution }
             };
 
         #endregion

@@ -9,7 +9,7 @@ namespace SudokuSolver.UnitTests.Printers
         public void TestPrint()
         {
             StringPuzzlePrinter printer = new StringPuzzlePrinter();
-            string result = printer.Print(MockPuzzleFactory.SolvedPuzzle);
+            string result = printer.Print(MockPuzzle.SolvedPuzzle);
 
         }
     }

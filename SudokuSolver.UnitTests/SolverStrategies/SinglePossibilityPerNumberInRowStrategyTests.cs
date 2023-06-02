@@ -13,7 +13,7 @@ namespace SudokuSolver.UnitTests.SolverStrategies
         public void PuzzleI7J2Missing_SomethingFound()
         {
             SudokuAnalytics analytics = new();
-            SudokuPuzzle puzzle = MockPuzzleFactory.PuzzleI7J2Missing;
+            SudokuPuzzle puzzle = MockPuzzle.PuzzleI7J2Missing;
             bool result = _strategy.Cycle(puzzle, ref analytics, true);
             Assert.True(result);
         }
@@ -22,7 +22,7 @@ namespace SudokuSolver.UnitTests.SolverStrategies
         public void PuzzleI7J2Missing_8Expected()
         {
             SudokuAnalytics analytics = new();
-            SudokuPuzzle puzzle = MockPuzzleFactory.PuzzleI7J2Missing;
+            SudokuPuzzle puzzle = MockPuzzle.PuzzleI7J2Missing;
             bool result = _strategy.Cycle(puzzle, ref analytics, true);
             Cell cell = puzzle[7, 2];
             Assert.Equal(8, cell.Value);
@@ -33,7 +33,7 @@ namespace SudokuSolver.UnitTests.SolverStrategies
         public void Test()
         {
             SudokuAnalytics analytics = new();
-            SudokuPuzzle puzzle = MockPuzzleFactory.EasyLevelPuzzle1After11Moves;
+            SudokuPuzzle puzzle = MockPuzzle.EasyLevelPuzzle1After11Moves;
             bool result = _strategy.Cycle(puzzle, ref analytics, true);
             Cell cell = puzzle[8, 7];
             Assert.Equal(2, cell.Value);

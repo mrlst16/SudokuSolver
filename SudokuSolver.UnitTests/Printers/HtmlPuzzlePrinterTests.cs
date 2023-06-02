@@ -11,7 +11,7 @@ namespace SudokuSolver.UnitTests.Printers
         public void Test()
         {
             HtmlPuzzlePrinter printer = new HtmlPuzzlePrinter();
-            SudokuPuzzle puzzle = MockPuzzleFactory.EasyLevelPuzzle1;
+            SudokuPuzzle puzzle = MockPuzzle.EasyLevelPuzzle1;
             FastPencil.Apply(puzzle);
             string result = printer.Print(puzzle);
         }
