@@ -140,7 +140,7 @@ namespace SudokuSolver.Tests.MockData
         //From readers digest
         public static SudokuPuzzle HardLevelPuzzle1Solution => new Cell[9, 9]
         {
-            { 1, 1, 6, 5, 2, 4, 7, 9, 8 },
+            { 1, 3, 6, 5, 2, 4, 7, 9, 8 },
             { 8, 9, 5, 3, 6, 7, 1, 2, 4 },
             { 7, 2, 4, 9, 8, 1, 3, 5, 6 },
             { 5, 8, 3, 6, 4, 9, 2, 7, 1 },
