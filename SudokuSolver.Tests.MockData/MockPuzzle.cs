@@ -2,21 +2,8 @@ using SudokuSolver.Models;
 
 namespace SudokuSolver.Tests.MockData
 {
-    public class MockPuzzleFactory
+    public class MockPuzzle
     {
-        public static SudokuPuzzle EmptyPuzzle => new Cell[9, 9]
-        {
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-        };
-
         public static SudokuPuzzle SolvedPuzzle => new Cell[9, 9]
         {
             { 1, 2, 3, 4, 5, 6, 7, 8, 9 },

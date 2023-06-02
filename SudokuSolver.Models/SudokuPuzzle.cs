@@ -2,6 +2,19 @@
 {
     public class SudokuPuzzle
     {
+        public static SudokuPuzzle Empty => new Cell[9, 9]
+        {
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+        };
+
         internal Cell[,] _board;
         public Cell[,] Board => _board;
 
@@ -16,6 +29,11 @@
             for (int i = 0; i < board.GetLength(0); i++)
                 for (int j = 0; j < board.GetLength(1); j++)
                     _board[i, j] = board[i, j];
+        }
+
+        public SudokuPuzzle()
+        {
+            _board = Empty;
         }
 
         public static implicit operator SudokuPuzzle(Cell[,] board)

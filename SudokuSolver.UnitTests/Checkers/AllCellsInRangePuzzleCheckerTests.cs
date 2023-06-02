@@ -10,14 +10,14 @@ namespace SudokuSolver.UnitTests.Checkers
         [Fact]
         public void SolvedPuzzle()
         {
-            bool result = _checker.Check(MockPuzzleFactory.SolvedPuzzle);
+            bool result = _checker.Check(MockPuzzle.SolvedPuzzle);
             Assert.True(result);
         }
 
         [Fact]
         public void PuzzleI7J2Missing()
         {
-            bool result = _checker.Check(MockPuzzleFactory.PuzzleI7J2Missing);
+            bool result = _checker.Check(MockPuzzle.PuzzleI7J2Missing);
             Assert.False(result);
         }
     }
