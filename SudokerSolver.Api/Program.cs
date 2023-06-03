@@ -58,6 +58,7 @@ app.Use(async (context, next) =>
     ErrorHandlingMiddleware errorHandler = new ErrorHandlingMiddleware();
     await errorHandler.Handle(context, next);
 });
+
 //app.UseAuthorization();
 
 app.MapControllers();

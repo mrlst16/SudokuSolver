@@ -1,7 +1,6 @@
 import './App.css';
 import { Outlet, Route, Router } from 'react-router';
 import { Solver } from './Solver';
-import { Routes, } from 'react-router-dom';
 import {
   createBrowserRouter,
   RouterProvider,

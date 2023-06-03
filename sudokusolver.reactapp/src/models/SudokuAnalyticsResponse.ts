@@ -1,8 +1,9 @@
-export class SudokuAnalysisResponse{
-    totalPasses: number = 0;
+import { Move } from "./Move";
+
+export class SudokuAnalyticsResponse{
+    totalPasses: number = -1;
     stringRepresentation: string = "";
-    
-    // public List<Move> Moves { get; set; } = new List<Move>();
-    //     public int TotalPasses { get; set; }
-    //     public string StringRepresentation { get; set; }
+    moves: Move[] = [];
+    solvedPuzzle: number[] = [];
+    solvedPuzzle2D: number[][] = [][9];
 }
