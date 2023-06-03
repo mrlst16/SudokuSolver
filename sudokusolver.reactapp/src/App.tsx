@@ -1,22 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Outlet, Route, Router } from 'react-router';
+import { Solver } from './Solver';
+import { Routes, } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Solver />,
+  }]);
 
 function App() {
+  const routes = [{}];
   return (
-    <div className="App">
-        <h1>Sudoku Solver</h1>
-        <main>
-          <h3>Welcome to the sudoku solver!</h3>
-          <p>
-            Place a string of 81 numbers into the text area below.  This will be parsed as "Every 9 numbers is a row, starting from the top"
-          </p>
-        </main>
-        <textarea>
-        </textarea>
-        <button type='submit'></button>
-    </div>
-  );
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+  );  
 }
 
 export default App;
