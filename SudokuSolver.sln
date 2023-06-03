@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{91E5F189
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver.Tests.MockData", "SudokuSolver.Tests.MockData\SudokuSolver.Tests.MockData.csproj", "{56F5A478-33C1-43D7-B5AD-400E56E657AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokerSolver.Api", "SudokerSolver.Api\SudokerSolver.Api.csproj", "{A9188FAC-4FF1-46A6-85FE-96733F641AB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuSolver.Api", "SudokerSolver.Api\SudokuSolver.Api.csproj", "{A9188FAC-4FF1-46A6-85FE-96733F641AB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

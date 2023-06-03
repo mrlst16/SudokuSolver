@@ -12,6 +12,13 @@ namespace SudokuSolver.UnitTests.Parsers
     public class PuzzleParserTests
     {
         #region Tests
+
+        [Fact]
+        public void Test()
+        {
+            string input = MockParsingInput.CommaDelimitedOfEasyLevelPuzzle1;
+        }
+
         [Theory]
         [MemberData(nameof(ParseTestData))]
         public void ParseTest(
@@ -30,7 +37,7 @@ namespace SudokuSolver.UnitTests.Parsers
         public static List<object[]> ParseTestData()
             => new List<object[]>()
             {
-                new object[]{ MockParsingInput.CommaDelimited, MockPuzzle.SolvedPuzzle }
+                new object[]{ MockParsingInput.CommaDelimitedOfSolvedPuzzle, MockPuzzle.SolvedPuzzle }
             };
         #endregion
     }

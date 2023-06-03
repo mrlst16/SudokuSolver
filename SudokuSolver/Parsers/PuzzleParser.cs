@@ -12,15 +12,18 @@ namespace SudokuSolver.Parsers
 {
     public class PuzzleParser : IPuzzleParser
     {
+        public static IEnumerable<int> ExtractNumbers(string str)
+            => str
+            .Where(x => x.IsInRange() || x == '0')
+            .Select(x => ((int) x) - 48);
+
         public SudokuPuzzle Parse(string str)
         {
             if (str.None())
                 throw new ArgumentException("string is empty");
 
             SudokuPuzzle result = new();
-            IEnumerable<int> numbers = str
-                .Where(x => x.IsInRange())
-                .Select(x => ((int)x) - 48);
+            IEnumerable<int> numbers = ExtractNumbers(str);
 
             if (numbers.None() || numbers.Count() != 81)
                 throw new ArgumentException("string should contain 81 numbers");
