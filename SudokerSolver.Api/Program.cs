@@ -1,6 +1,7 @@
 using Common.Interfaces.Utilities;
 using FluentValidation;
 using SudokuSolver.Api.Mappers;
+using SudokuSolver.Api.Middleware;
 using SudokuSolver.Api.Responses;
 using SudokuSolver.Api.Validators;
 using SudokuSolver.Checkers;
@@ -20,7 +21,8 @@ builder.Services.AddTransient<Func<int, IValidator<string>>>(
     x => new Func<int, IValidator<string>>(
         i => i switch
             {
-                1 => new ParserValidator()
+                1 => new ParserValidator(),
+                _ => throw new NotImplementedException()
             }
         )
     );
@@ -31,6 +33,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(x =>
+    x.AddPolicy("LP",
+        policy =>
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+    )
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,10 +50,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("LP");
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.Use(async (context, next) =>
+{
+    ErrorHandlingMiddleware errorHandler = new ErrorHandlingMiddleware();
+    await errorHandler.Handle(context, next);
+});
+//app.UseAuthorization();
 
 app.MapControllers();
 

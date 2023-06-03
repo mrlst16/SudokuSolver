@@ -46,7 +46,7 @@ namespace SudokuSolver.Api.Controllers
             {
                 Data = response,
                 Success = true,
-                SuccessMessage = "Successfully verified user email"
+                SuccessMessage = "Successfully solved puzzle"
             });
         }
     }

@@ -2,8 +2,8 @@
 using Common.Models.Exceptions;
 using Common.Models.Responses;
 using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations;
 using System.Net;
+using FluentValidation;
 
 namespace SudokuSolver.Api.Middleware
 {
