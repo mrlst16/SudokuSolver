@@ -5,7 +5,6 @@ import "./Solver.css"
 export function Solver(){
     const [input, setInput] = useState('')
     const [response, setResponse] = useState(new SudokuAnalyticsResponse());
-    const [solvedPuzzle, setSolvedPuzzle] = useState([][9])
 
     return (
         
@@ -33,8 +32,8 @@ export function Solver(){
                     let result: any = await callSolve(input);
                     let hardResponse: SudokuAnalyticsResponse = result.data.data;
                     setResponse(hardResponse);
-                    console.log("hardResponse");
-                    console.log(hardResponse);
+                    // console.log("hardResponse");
+                    // console.log(hardResponse);
                 }}
                 >
                     Solve
@@ -42,7 +41,7 @@ export function Solver(){
                 <div hidden={response.totalPasses == -1}>
                     <h3>Result</h3>
                     <table className="solved-puzzle">
-                        {
+                        { 
                             response.solvedPuzzle2D.map((x)=>
                             <tr>
                                 <td>{x.map(v=> <td>{v}</td>)}</td>

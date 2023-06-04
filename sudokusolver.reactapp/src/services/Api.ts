@@ -1,4 +1,5 @@
 import axios from "axios";
+import config from "../config.json"
 
 export async function callSolve(
     input: string,
@@ -10,7 +11,7 @@ export async function callSolve(
             }
         };
         return await axios.post(
-                    'https://localhost:7215/api/Solver/solve',
+                    config.baseUrl + '/api/Solver/solve',
                     input,
                     customConfig
         );

@@ -5,5 +5,5 @@ export class SudokuAnalyticsResponse{
     stringRepresentation: string = "";
     moves: Move[] = [];
     solvedPuzzle: number[] = [];
-    solvedPuzzle2D: number[][] = [][9];
+    solvedPuzzle2D: number[][] = [[]];
 }
