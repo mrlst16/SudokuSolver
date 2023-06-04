@@ -1,3 +1,35 @@
 .solver {
     background-color: aliceblue;
 }
+
+.solver .formTable{
+    margin: auto;
+}
+
+.solver .input {
+    resize: none;
+    width: 15em;
+    height: 15em;
+}
+
+.solver .analysis{
+    margin: auto;
+}
+
+.solver .solvedPuzzle{
+    margin: auto;
+}
+
+.solver .solvedPuzzle tr{
+    margin: 0px;
+}
+
+.solver .solvedPuzzle td{
+    width: 25em;
+    border: .005em solid black;
+    border-collapse: collapse;
+}
+
+.solver .moves{
+    margin: auto;
+}
