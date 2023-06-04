@@ -3,6 +3,22 @@ import { SolverStrategyType } from "./models/SolverStrategyType";
 import { SudokuAnalyticsResponse } from "./models/SudokuAnalyticsResponse";
 import {callSolve} from './services/Api'
 import "./Solver.css"
+
+function MoveType(type: SolverStrategyType) : string{
+    switch(type){
+        case SolverStrategyType.SinglePossibilityPerCell:
+            return "Only number that can go in cell";
+        case SolverStrategyType.SinglePossibilityOfNumberInRow:
+            return "Only instance of this number in this row";
+        case SolverStrategyType.SinglePossibilityOfNumberInColumn:
+            return "Only instance of this number in this column";
+        case SolverStrategyType.SinglePossibilityOfNumberInSquare:
+            return "Only instance of this number in this square";
+            default:
+                return "";
+    }
+}
+
 export function Solver(){
     const [input, setInput] = useState('')
     const [response, setResponse] = useState(new SudokuAnalyticsResponse());
@@ -66,9 +82,11 @@ export function Solver(){
                     <th>Row</th>
                     <th>Column</th>
                     {response.moves.map((m)=> 
-                        <tr className="solution-move" key={m.order}>
+                        <tr>
                             <td>{m.order}</td>
-                            <td>{SolverStrategyType[m.type]}</td>
+                            <td>{
+                                    MoveType(m.type)
+                                }</td>
                             <td>{m.value}</td>
                             <td>{m.i}</td>
                             <td>{m.j}</td>
