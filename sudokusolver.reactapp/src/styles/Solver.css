@@ -1,0 +1,17 @@
+.solver .formTable{
+    margin: auto;
+}
+
+.solver .input {
+    resize: none;
+    width: 15em;
+    height: 15em;
+}
+
+.solver .analysis{
+    margin: auto;
+}
+  
+.solver .moves{
+    margin: auto;
+}

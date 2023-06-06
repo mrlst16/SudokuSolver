@@ -2,7 +2,9 @@ import { useState } from "react"
 import { SolverStrategyType } from "./models/SolverStrategyType";
 import { SudokuAnalyticsResponse } from "./models/SudokuAnalyticsResponse";
 import {callSolve} from './services/Api'
-import "./Solver.css"
+import "./styles/Solver.css"
+import "./styles/Button.css"
+import "./styles/Puzzle.css"
 
 function MoveType(type: SolverStrategyType) : string{
     switch(type){
@@ -30,7 +32,10 @@ export function Solver(){
             <main>
                 <h3>Welcome to the sudoku solver!</h3>
                 <p>
-                    Place a string of 81 numbers into the text area below.  This will be parsed as "Every 9 numbers is a row, starting from the top"
+                    Place a string of 81 numbers into the text area below.
+                </p>
+                <p>
+                    This will be parsed as "Every 9 numbers is a row, starting from the top"
                 </p>
             </main>
             <div>
@@ -50,6 +55,7 @@ export function Solver(){
                 <tr>
                     <td>
                         <button 
+                            className="button-3"
                             type='button'
                             onClick={async (e)=>{
                                 let result: any = await callSolve(input);
@@ -63,8 +69,8 @@ export function Solver(){
                 </tr>
             </table>
             <div className="analysis" hidden={response.totalPasses == -1}>
-                <h3>Result</h3>
-                <table className="solvedPuzzle">
+                <h2>Solution</h2>
+                <table className="puzzle">
                     { 
                         response.solvedPuzzle2D.map((x)=>
                         <tr>
