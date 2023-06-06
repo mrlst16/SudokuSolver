@@ -4,7 +4,7 @@ import { SudokuAnalyticsResponse } from "./models/SudokuAnalyticsResponse";
 import {callSolve} from './services/Api'
 import "./styles/Solver.css"
 import "./styles/Button.css"
-import "./styles/Puzzle.css"
+import Puzzle from "./components/Puzzle";
 
 function MoveType(type: SolverStrategyType) : string{
     switch(type){
@@ -70,16 +70,8 @@ export function Solver(){
             </table>
             <div className="analysis" hidden={response.totalPasses == -1}>
                 <h2>Solution</h2>
-                <table className="puzzle">
-                    { 
-                        response.solvedPuzzle2D.map((x)=>
-                        <tr>
-                            {x.map(v=> <td>{v}</td>)}
-                        </tr>
-                        )
-                    }
-                </table>
-
+                
+                <Puzzle Grid={response.solvedPuzzle2D}></Puzzle>
                 <h2>Moves</h2>
                 <table className="moves">
                     <th>Order</th>
