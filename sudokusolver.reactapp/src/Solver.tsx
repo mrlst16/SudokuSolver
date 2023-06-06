@@ -68,7 +68,7 @@ export function Solver(){
                     { 
                         response.solvedPuzzle2D.map((x)=>
                         <tr>
-                            <td>{x.map(v=> <td>{v}</td>)}</td>
+                            {x.map(v=> <td>{v}</td>)}
                         </tr>
                         )
                     }
@@ -86,7 +86,8 @@ export function Solver(){
                             <td>{m.order}</td>
                             <td>{
                                     MoveType(m.type)
-                                }</td>
+                                }
+                            </td>
                             <td>{m.value}</td>
                             <td>{m.i}</td>
                             <td>{m.j}</td>

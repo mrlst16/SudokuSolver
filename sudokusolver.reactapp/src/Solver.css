@@ -1,5 +1,5 @@
 .solver {
-    background-color: aliceblue;
+    
 }
 
 .solver .formTable{
@@ -16,20 +16,49 @@
     margin: auto;
 }
 
-.solver .solvedPuzzle{
+/* Solved Puzzle */
+.solver .solvedPuzzle {
     margin: auto;
+    border-spacing: 0px !important;
 }
 
-.solver .solvedPuzzle tr{
+.solver .solvedPuzzle  td {
+    height:3em;
+    width:3em;
+    border:1px solid;
+    text-align:center;
     margin: 0px;
 }
 
-.solver .solvedPuzzle td{
-    width: 25em;
-    border: .005em solid black;
-    border-collapse: collapse;
+.solver .solvedPuzzle  td:first-child {
+    border-left:solid;
 }
 
+.solver .solvedPuzzle  td:nth-child(3n) {
+    border-right:solid ;
+}
+
+.solver .solvedPuzzle  tr:first-child {
+    border-top:solid;
+}
+
+.solver .solvedPuzzle tr:nth-child(3n) td {
+    border-bottom: solid .25em;
+}
+
+.solver .solvedPuzzle td:nth-child(3n) {
+    border-right: solid .25em;
+}
+
+.solver .solvedPuzzle td:last-child {
+    border-right: solid 1px !important;
+}
+
+.solver .solvedPuzzle tr:last-child td {
+    border-bottom: solid 1px !important;
+}
+  
 .solver .moves{
     margin: auto;
+    
 }
