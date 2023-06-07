@@ -5,8 +5,8 @@
 }
  
 .puzzle  td {
-    height:3em;
-    width:3em;
+    height:1.5em;
+    width:1.5em;
     border:1px solid;
     text-align:center;
     margin: 0px;
@@ -25,11 +25,11 @@
 }
 
 .puzzle tr:nth-child(3n) td {
-    border-bottom: solid .25em;
+    border-bottom: solid .15em;
 }
 
 .puzzle td:nth-child(3n) {
-    border-right: solid .25em;
+    border-right: solid .15em;
 }
 
 .puzzle td:last-child {
