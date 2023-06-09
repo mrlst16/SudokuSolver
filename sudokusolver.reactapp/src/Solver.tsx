@@ -5,13 +5,32 @@ import "./styles/Solver.css"
 import "./styles/Button.css"
 import Puzzle from "./components/Puzzle";
 import {MapSolverStrategyToString} from "./mappers/SolverStrategyTypeMapper"
+import { ApiResponse } from "./models/ApiResponse";
+import { ApiError } from "./models/ApiError";
+import ErrorDisplay from "./components/ErrorDisplay";
+import { ApiErrors } from "./models/ApiErrors";
 
 export function Solver(){
     const [input, setInput] = useState('')
     const [response, setResponse] = useState(new SudokuAnalyticsResponse());
+    const [errors, setErrors] = useState(new ApiErrors());
 
+    function HandleSolveButtonClick(){
+            callSolve(input)
+                .then(x=> {
+                    setResponse(x.data.data)
+                    setErrors(new ApiErrors())
+                })
+                .catch(e=> {
+                    setResponse(new SudokuAnalyticsResponse());
+                    let errorsArray: ApiError [] = e.response.data.Errors;
+                    let apiErrors: ApiErrors = new ApiErrors()
+                    apiErrors.Errors = errorsArray
+                    setErrors(apiErrors);
+                });
+    }
+    
     return (
-        
         <div className="solver">
             <h1>Sudoku Solver</h1>
             <main>
@@ -42,21 +61,18 @@ export function Solver(){
                         <button 
                             className="button-3"
                             type='button'
-                            onClick={async (e)=>{
-                                let result: any = await callSolve(input);
-                                let hardResponse: SudokuAnalyticsResponse = result.data.data;
-                                setResponse(hardResponse);
-                            }}
+                            onClick={HandleSolveButtonClick}
                         >
                             Solve
                         </button>
                     </td>
                 </tr>
             </table>
-            <div className="analysis" hidden={response.totalPasses == -1}>
+            <div className="analysis" hidden={response==undefined || response.totalPasses == -1}>
                 <h2>Solution</h2>
                 
-                <Puzzle Grid={response.solvedPuzzle2D}></Puzzle>
+                <Puzzle Grid={response.solvedPuzzle}></Puzzle>
+
                 <h2>Moves</h2>
                 <table className="moves">
                     <th>Order</th>
@@ -64,21 +80,25 @@ export function Solver(){
                     <th>Value</th>
                     <th>Row</th>
                     <th>Column</th>
-                    {response.moves.map((m)=> 
-                        <tr>
-                            <td>{m.order}</td>
-                            <td>{
-                                    MapSolverStrategyToString(m.type)
-                                }
-                            </td>
-                            <td>{m.value}</td>
-                            <td>{m.i}</td>
-                            <td>{m.j}</td>
-                        </tr>
-                    )}
+                    {
+                            response.moves.map((m)=> 
+                            <tr>
+                                <td>{m.order}</td>
+                                <td>{
+                                        MapSolverStrategyToString(m.type)
+                                    }
+                                </td>
+                                <td>{m.value}</td>
+                                <td>{m.i}</td>
+                                <td>{m.j}</td>
+                            </tr>
+                        )
+                    }
                 </table>
             </div>
         </div>
+
+        <ErrorDisplay Errors={errors} />
     </div>
     );
 }

@@ -11,6 +11,7 @@ const Puzzle : FC<PuzzleProps> = ({Grid, FontSize}) => {
     if(FontSize == null)
         FontSize = 25
 
+    if(Grid != undefined)
     return(
         <>
             <table
@@ -27,6 +28,8 @@ const Puzzle : FC<PuzzleProps> = ({Grid, FontSize}) => {
             </table>    
         </>
     )
+    else 
+        return (<></>)
 }
 
 export default Puzzle

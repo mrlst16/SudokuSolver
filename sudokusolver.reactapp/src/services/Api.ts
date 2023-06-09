@@ -1,8 +1,10 @@
 import axios from "axios";
 import config from "../config.json"
+import { SudokuAnalyticsResponse } from "../models/SudokuAnalyticsResponse";
+import { ApiResponse } from "../models/ApiResponse";
 
-export async function callSolve(
-    input: string,
+export function callSolve(
+    input: string
     ) : Promise<any>
     {
         const customConfig = {
@@ -10,7 +12,7 @@ export async function callSolve(
                 'Content-Type': 'application/json'
             }
         };
-        return await axios.post(
+        return axios.post(
                     config.baseUrl + '/api/Solver/solve',
                     input,
                     customConfig
