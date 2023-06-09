@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { ApiErrors } from "../models/ApiErrors";
+import "../styles/ErrorDisplay.css"
 
 interface ApiErrorsProps{
     Errors: ApiErrors;
@@ -12,7 +13,7 @@ const ErrorDisplay : FC<ApiErrorsProps> = ({Errors}) => {
     )
     else
     return(
-        <div>
+        <div className="errorDisplay">
             <ul>
             {
                 Errors.Errors.map(error=> 
