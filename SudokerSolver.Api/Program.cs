@@ -9,7 +9,6 @@ using SudokuSolver.Factories;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models.Analytics;
 using SudokuSolver.Parsers;
-using SudokuSolver.Solvers;
 
 var builder = WebApplication.CreateBuilder(args);
 
