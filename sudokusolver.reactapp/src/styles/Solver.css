@@ -15,3 +15,7 @@
 .solver .moves{
     margin: auto;
 }
+
+.solver .moves .movesTable{
+    margin: auto;
+}

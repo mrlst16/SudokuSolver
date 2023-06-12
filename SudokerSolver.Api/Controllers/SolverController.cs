@@ -18,18 +18,21 @@ namespace SudokuSolver.Api.Controllers
         private readonly IPuzzleSolver _solver;
         private readonly Func<int, IValidator<string>> _parserValidator;
         private readonly IMapper<SudokuAnalytics, SudokuAnalyticsResponse> _mapper;
+        private readonly Func<int, IPuzzleChecker> _puzzleChecker;
 
         public SolverController(
             IPuzzleParser parser,
             IPuzzleSolver solver,
             Func<int, IValidator<string>> parserValidator,
-            IMapper<SudokuAnalytics, SudokuAnalyticsResponse> mapper
+            IMapper<SudokuAnalytics, SudokuAnalyticsResponse> mapper,
+            Func<int, IPuzzleChecker> puzzleChecker
             )
         {
             _parser = parser;
             _solver = solver;
             _parserValidator = parserValidator;
             _mapper = mapper;
+            _puzzleChecker = puzzleChecker;
         }
 
         [HttpPost("solve")]
@@ -41,6 +44,8 @@ namespace SudokuSolver.Api.Controllers
             SudokuPuzzle puzzle = _parser.Parse(input);
             SudokuAnalytics result = _solver.Solve(puzzle);
             SudokuAnalyticsResponse response = _mapper.Map(result);
+            if (!_puzzleChecker(1).Check(puzzle))
+                throw new Exception("Puzzle is not solvable");
 
             return new OkObjectResult(new ApiResponse<SudokuAnalyticsResponse>()
             {

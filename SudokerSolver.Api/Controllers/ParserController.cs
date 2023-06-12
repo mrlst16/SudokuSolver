@@ -9,16 +9,17 @@ using SudokuSolver.Models;
 
 namespace SudokuSolver.Api.Controllers
 {
+    [Route("api/[controller]")]
     public class ParserController : Controller
     {
         private readonly IPuzzleParser _parser;
         private readonly Func<int, IValidator<string>> _parserValidator;
-        private readonly IMapper<SudokuAnalytics, SudokuAnalyticsResponse> _mapper;
+        private readonly IMapper<SudokuPuzzle, ParserResponse> _mapper;
 
         public ParserController(
             IPuzzleParser parser,
             Func<int, IValidator<string>> parserValidator,
-            IMapper<SudokuAnalytics, SudokuAnalyticsResponse> mapper
+            IMapper<SudokuPuzzle, ParserResponse> mapper
         )
         {
             _parser = parser;
@@ -33,10 +34,11 @@ namespace SudokuSolver.Api.Controllers
         {
             await _parserValidator(1).ValidateAndThrowAsync(input);
             SudokuPuzzle puzzle = _parser.Parse(input);
-            
-            return new OkObjectResult(new ApiResponse<SudokuPuzzle>()
+            ParserResponse response = _mapper.Map(puzzle);
+
+            return new OkObjectResult(new ApiResponse<ParserResponse>()
             {
-                Data = puzzle,
+                Data = response,
                 Success = true,
                 SuccessMessage = "Successfully solved puzzle"
             });

@@ -1,0 +1,24 @@
+.movesTable {
+    font-size: 1.3em;
+}
+
+.movesTable th{
+    background-color: black;
+    color: white;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.movesTable td{
+    font-family: "Gill Sans";
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.movesTable tr:nth-child(2n) td{
+    background-color: rgba(0, 0, 0, .1)
+}
+
+.movesTable tr:nth-child(2n-1) td{
+    background-color: rgba(0, 0, 0, .05)
+}

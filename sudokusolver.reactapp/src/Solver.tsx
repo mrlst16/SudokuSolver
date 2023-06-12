@@ -1,22 +1,45 @@
 import { useState } from "react"
 import { SudokuAnalyticsResponse } from "./models/SudokuAnalyticsResponse";
-import {callSolve} from './services/Api'
+import {callParse, callSolve} from './services/Api'
 import "./styles/Solver.css"
 import "./styles/Button.css"
 import Puzzle from "./components/Puzzle";
-import {MapSolverStrategyToString} from "./mappers/SolverStrategyTypeMapper"
-import { ApiResponse } from "./models/ApiResponse";
 import { ApiError } from "./models/ApiError";
 import ErrorDisplay from "./components/ErrorDisplay";
 import { ApiErrors } from "./models/ApiErrors";
+import { ParserResponse } from "./models/ParserResponse";
+import MovesTable from "./components/MovesTable";
 
 export function Solver(){
     const [input, setInput] = useState('')
     const [response, setResponse] = useState(new SudokuAnalyticsResponse());
+    const [parsedPuzzle, setparsedPuzzle] = useState(new ParserResponse());
     const [errors, setErrors] = useState(new ApiErrors());
 
+    function HandleInputChange(e: React.ChangeEvent<HTMLTextAreaElement>){
+        console.log("e");
+        console.log(e);
+        setInput(e.target.value);
+        setResponse(new SudokuAnalyticsResponse());
+        callParse(e.target.value)
+            .then(x=> {
+                console.log("x");
+                console.log(x);
+                setparsedPuzzle(x.data.data)
+                console.log("parsedPuzzle");
+                console.log(parsedPuzzle);
+                console.log(parsedPuzzle.board);
+            })
+            .catch(er=> {
+                console.log("er");
+                console.log(er);
+                setparsedPuzzle(new ParserResponse())
+            });
+    }
+    
     function HandleSolveButtonClick(){
-            callSolve(input)
+        setResponse(new SudokuAnalyticsResponse());
+        callSolve(input)
                 .then(x=> {
                     setResponse(x.data.data)
                     setErrors(new ApiErrors())
@@ -46,14 +69,24 @@ export function Solver(){
             <table className="formTable">
                 <tr>
                     <td>
-                        <textarea
-                            className="input"                
-                            onChange={
-                                (e)=> {
-                                    setInput(e.target.value)
-                                }
-                            }
-                            />
+                        <table>
+                            <tr>
+                                <td>
+                                    <textarea
+                                        className="input"                
+                                        onChange={async x=> {
+                                                console.log("input");
+                                                console.log(input); 
+                                                HandleInputChange(x);
+                                            }
+                                        }
+                                    />
+                                </td>
+                                <td>
+                                    <Puzzle Grid={parsedPuzzle.board} FontSize={12.75} />
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
@@ -74,27 +107,7 @@ export function Solver(){
                 <Puzzle Grid={response.solvedPuzzle}></Puzzle>
 
                 <h2>Moves</h2>
-                <table className="moves">
-                    <th>Order</th>
-                    <th>Strategy</th>
-                    <th>Value</th>
-                    <th>Row</th>
-                    <th>Column</th>
-                    {
-                            response.moves.map((m)=> 
-                            <tr>
-                                <td>{m.order}</td>
-                                <td>{
-                                        MapSolverStrategyToString(m.type)
-                                    }
-                                </td>
-                                <td>{m.value}</td>
-                                <td>{m.i}</td>
-                                <td>{m.j}</td>
-                            </tr>
-                        )
-                    }
-                </table>
+                <MovesTable Moves={response.moves} />
             </div>
         </div>
 

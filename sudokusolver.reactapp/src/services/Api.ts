@@ -18,3 +18,19 @@ export function callSolve(
                     customConfig
         );
     }
+
+export function callParse(
+    input: string
+    ) : Promise<any>
+    {
+        const customConfig = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        return axios.post(
+                    config.baseUrl + '/api/Parser/parse',
+                    input,
+                    customConfig
+        );
+    }
