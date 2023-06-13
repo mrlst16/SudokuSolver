@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Extensions;
+﻿using Common.Extensions;
 using SudokuSolver.Interfaces;
 using SudokuSolver.Models;
 
@@ -15,7 +9,7 @@ namespace SudokuSolver.Parsers
         public static IEnumerable<int> ExtractNumbers(string str)
             => str
             .Where(x => x.IsInRange() || x == '0')
-            .Select(x => ((int) x) - 48);
+            .Select(x => ((int)x) - 48);
 
         public SudokuPuzzle Parse(string str)
         {

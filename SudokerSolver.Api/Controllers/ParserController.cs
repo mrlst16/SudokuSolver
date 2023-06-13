@@ -4,7 +4,6 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using SudokuSolver.Api.Responses;
 using SudokuSolver.Interfaces;
-using SudokuSolver.Models.Analytics;
 using SudokuSolver.Models;
 
 namespace SudokuSolver.Api.Controllers

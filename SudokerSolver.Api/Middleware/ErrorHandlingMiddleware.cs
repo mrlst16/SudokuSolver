@@ -1,9 +1,9 @@
 ﻿using Common.Extensions;
 using Common.Models.Exceptions;
 using Common.Models.Responses;
+using FluentValidation;
 using Newtonsoft.Json;
 using System.Net;
-using FluentValidation;
 
 namespace SudokuSolver.Api.Middleware
 {
