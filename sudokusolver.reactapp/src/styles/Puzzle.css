@@ -1,0 +1,41 @@
+
+.puzzle {
+    margin: auto;
+    border-spacing: 0px !important;
+}
+ 
+.puzzle  td {
+    height:1.5em;
+    width:1.5em;
+    border:1px solid;
+    text-align:center;
+    margin: 0px;
+}
+
+.puzzle  td:first-child {
+    border-left:solid;
+}
+
+.puzzle td:nth-child(3n) {
+    border-right:solid ;
+}
+
+.puzzle tr:first-child {
+    border-top:solid;
+}
+
+.puzzle tr:nth-child(3n) td {
+    border-bottom: solid .15em;
+}
+
+.puzzle td:nth-child(3n) {
+    border-right: solid .15em;
+}
+
+.puzzle td:last-child {
+    border-right: solid 1px !important;
+}
+
+.puzzle tr:last-child td {
+    border-bottom: solid 1px !important;
+}

@@ -1,53 +1,42 @@
-using Common.Interfaces.Utilities;
+﻿using Common.Interfaces.Utilities;
 using Common.Models.Responses;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using SudokuSolver.Api.Responses;
 using SudokuSolver.Interfaces;
-using SudokuSolver.Models;
 using SudokuSolver.Models.Analytics;
+using SudokuSolver.Models;
 
 namespace SudokuSolver.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class SolverController : ControllerBase
+    public class ParserController : Controller
     {
-
         private readonly IPuzzleParser _parser;
-        private readonly IPuzzleSolver _solver;
         private readonly Func<int, IValidator<string>> _parserValidator;
-        private readonly IMapper<SudokuAnalytics, SudokuAnalyticsResponse> _mapper;
-        private readonly Func<int, IPuzzleChecker> _puzzleChecker;
+        private readonly IMapper<SudokuPuzzle, ParserResponse> _mapper;
 
-        public SolverController(
+        public ParserController(
             IPuzzleParser parser,
-            IPuzzleSolver solver,
             Func<int, IValidator<string>> parserValidator,
-            IMapper<SudokuAnalytics, SudokuAnalyticsResponse> mapper,
-            Func<int, IPuzzleChecker> puzzleChecker
-            )
+            IMapper<SudokuPuzzle, ParserResponse> mapper
+        )
         {
             _parser = parser;
-            _solver = solver;
             _parserValidator = parserValidator;
             _mapper = mapper;
-            _puzzleChecker = puzzleChecker;
         }
 
-        [HttpPost("solve")]
+        [HttpPost("parse")]
         public async Task<IActionResult> Solve(
             [FromBody] string input
         )
         {
             await _parserValidator(1).ValidateAndThrowAsync(input);
             SudokuPuzzle puzzle = _parser.Parse(input);
-            SudokuAnalytics result = _solver.Solve(puzzle);
-            SudokuAnalyticsResponse response = _mapper.Map(result);
-            if (!_puzzleChecker(1).Check(puzzle))
-                throw new Exception("Puzzle is not solvable");
+            ParserResponse response = _mapper.Map(puzzle);
 
-            return new OkObjectResult(new ApiResponse<SudokuAnalyticsResponse>()
+            return new OkObjectResult(new ApiResponse<ParserResponse>()
             {
                 Data = response,
                 Success = true,

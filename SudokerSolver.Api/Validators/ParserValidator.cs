@@ -13,8 +13,8 @@ namespace SudokuSolver.Api.Validators
                 .WithMessage("Puzzle cannot be null or empty");
 
             RuleFor(x => x)
-                .Must(x => HaveCorrectNumbers(x))
-                .WithMessage("Puzzle must have 81 numbers each between 1 and 9 inclusively");
+                .Must(HaveCorrectNumbers)
+                .WithMessage("Puzzle must have 81 numbers each between 0 and 9 inclusively");
         }
 
         private bool HaveCorrectNumbers(string str)

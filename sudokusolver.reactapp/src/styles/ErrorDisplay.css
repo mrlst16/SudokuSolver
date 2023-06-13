@@ -1,0 +1,6 @@
+.errorDisplay ul{
+    list-style-type: none;
+    color: red;
+    font-weight: bold;
+    font-size: 1.25em;
+}
