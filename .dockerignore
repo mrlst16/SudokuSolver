@@ -1,0 +1,8 @@
+.git
+.github
+.vs
+sudokusolver.reactapp
+SudokuSolver.Tests.MockData
+SudokuSolver.UnitTests
+out
+.volumes

@@ -1,0 +1,8 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ServiceDockerfile
+    ports:
+      - 80:80
+      - 443:443
