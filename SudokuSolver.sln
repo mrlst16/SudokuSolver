@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{9B5A4C
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
 		docker-compose.yml = docker-compose.yml
+		ReactDockerfile = ReactDockerfile
 		ServiceDockerfile = ServiceDockerfile
 	EndProjectSection
 EndProject

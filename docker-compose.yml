@@ -4,5 +4,13 @@ services:
       context: .
       dockerfile: ServiceDockerfile
     ports:
-      - 80:80
+      - 5000:80
       - 443:443
+  ui:
+    build:
+      context: .
+      dockerfile: ReactDockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
