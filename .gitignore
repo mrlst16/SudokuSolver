@@ -58,3 +58,4 @@ packages/*
 volumes
 *.pem
 *.user
+*.ppk
